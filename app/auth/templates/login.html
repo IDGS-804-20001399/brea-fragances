@@ -1,0 +1,24 @@
+{% extends "bootstrap.html" %}
+
+{% from '_macros.html' import render_field %}
+{% from '_macros.html' import render_check %}
+{% from '_macros.html' import display_alerts %}
+
+{% block content %}
+<h1 class="text-center">Login</h1>
+
+{{ display_alerts() }}
+
+<div class="container">
+    <form action=""
+          method="POST">
+        {{ form.hidden_tag() }}
+        {{ render_field(form.email) }}
+        {{ render_field(form.password) }}
+        {{ render_check(form.remember) }}
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+</div>
+
+
+{% endblock content %}
