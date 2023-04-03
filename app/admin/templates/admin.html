@@ -1,6 +1,0 @@
-{% extends "bootstrap.html" %}
-
-{% block content %}
-<h1>Hola {{ current_user.email }}</h1>
-<a class="btn btn-primary" href="{{ url_for('auth.logout') }}">logout</a>
-{% endblock content %}

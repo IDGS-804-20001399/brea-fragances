@@ -1,6 +1,27 @@
-{% extends "bootstrap.html" %}
+{% extends "base.html" %}
 
-{% block content %}
-<h1>Hola {{ current_user.email }}</h1>
-<a class="btn btn-primary" href="{{ url_for('auth.logout') }}">logout</a>
-{% endblock content %}
+{% block body %}
+
+{% from '_macros.html' import render_field %}
+<style>
+    body{
+        background-color: #222222;
+    }
+</style>
+
+<h1 class="display-5 fw-bold text-center" style="color: whitesmoke;">{{ title }}</h1>
+
+<form method="POST" action="/customer/my-info" class="row g-3" style="max-width: 50%; margin: auto;">
+    {{ form.csrf_token }}
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    {{ render_field(form.id) }}
+    {{ render_field(form.names) }}
+    {{ render_field(form.lastnames) }}
+    {{ render_field(form.address) }}
+    {{ render_field(form.phone) }}
+    {{ render_field(form.password) }}
+    {{ render_field(form.email) }}
+    <button class="btn btn-warning" type="submit">Save</button>
+</form>
+
+{% endblock body %}

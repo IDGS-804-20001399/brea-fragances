@@ -16,6 +16,9 @@ def create_app():
     from app.auth.routes import auth
     from app.admin.routes import admin
     from app.customer.routes import customer
+    from app.home.routes import home
+
+    app.register_blueprint(home)
     app.register_blueprint(auth)
     app.register_blueprint(admin)
     app.register_blueprint(customer)

@@ -5,18 +5,26 @@
 {% from '_macros.html' import display_alerts %}
 
 {% block body %}
+<style>
+    body{
+        background-color: #222222;
+    }
+</style>
 
-
-<h1 class="display-5 fw-bold text-center" >{{ title }}</h1>
+<h1 class="display-5 fw-bold text-center" style="color: whitesmoke;">{{ title }}</h1>
 
 {{ display_alerts() }}
 
 <div class="container" style="margin-bottom: 10%;">
-    <form action="" method="POST" class="row g-3" style="max-width: 90%; margin: auto;">
+    <form action="/signup" method="POST" class="row g-3" style="max-width: 90%; margin: auto;">
         {{ form.hidden_tag() }}
+        {{ render_field(form.names) }}
+        {{ render_field(form.lastnames) }}
+        {{ render_field(form.address) }}
+        {{ render_field(form.phone) }}
         {{ render_field(form.email) }}
         {{ render_field(form.password) }}
-        {{ render_check(form.remember) }}
+        {{ render_field(form.confirm_password) }}
         {{ form.submit(class="btn btn-warning") }}
     </form>
 </div>

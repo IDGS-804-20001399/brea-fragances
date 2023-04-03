@@ -1,0 +1,23 @@
+{% extends 'bootstrap.html' %}
+
+{% block content %}
+<style>
+  body{
+    background-color: #222222;
+  }
+</style>
+
+{% from '_macros.html' import navbar %}
+{{ navbar() }}
+
+<div class="container-fluid py-5">
+    <h3 class="display-6 fw-bold" style="color: whitesmoke;">{{ current_user.email }}</h3>
+    <h1 class="display-5 fw-bold text-center" style="color: whitesmoke;">{{ title }}</h1>
+  
+    {% block body %}
+
+    {% endblock body %}
+
+</div>
+{% endblock content %}
+

@@ -1,0 +1,17 @@
+{% extends "adminBase.html" %}
+
+{% block body %}
+
+{% from '_macros.html' import render_field %}
+
+<form method="POST" action="/admin/add-product" class="row g-3" style="max-width: 50%; margin: auto;">
+    {{ form.csrf_token }}
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    {{ render_field(form.name) }}
+    {{ render_field(form.price) }}
+    {{ render_field(form.image) }}
+    {{ render_field(form.stock) }}
+    <button class="btn btn-warning" type="submit">Save</button>
+</form>
+
+{% endblock body %}
