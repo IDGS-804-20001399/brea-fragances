@@ -7,12 +7,16 @@
 {% block body %}
 
 
-<h1 class="display-5 fw-bold text-center" >{{ title }}</h1>
+<h1 class="display-5 fw-bold text-center">{{ title }}</h1>
 
 {{ display_alerts() }}
 
-<div class="container" style="margin-bottom: 10%;">
-    <form action="" method="POST" class="row g-3" style="max-width: 90%; margin: auto;">
+<div class="container"
+     style="margin-bottom: 10%;">
+    <form action=""
+          method="POST"
+          class="row g-3"
+          style="max-width: 90%; margin: auto;">
         {{ form.hidden_tag() }}
         {{ render_field(form.email) }}
         {{ render_field(form.password) }}

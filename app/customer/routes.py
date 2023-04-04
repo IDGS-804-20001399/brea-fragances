@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request, Blueprint
 from flask_security import login_required, current_user, roles_required
-from app.forms import UserForm
+from app.customer.forms import UserForm
 
 customer = Blueprint('customer', __name__,
                  template_folder='templates',
@@ -10,7 +10,7 @@ customer = Blueprint('customer', __name__,
 # @login_required
 # @roles_required('customer')
 def index():
-    form=UserForm(request.form)
+    form=UserForm()
 
     if request.method == "POST":
         return redirect(url_for("customer.index"))

@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request, Blueprint
 from flask_security import login_required, current_user, roles_required
-from app.forms import ProductForm
+from app.admin.forms import ProductForm
 
 admin = Blueprint('admin', __name__,
                  template_folder='templates',
@@ -22,7 +22,7 @@ def products():
 # @login_required
 # @roles_required('admin')
 def addProduct():
-    form=ProductForm(request.form)
+    form=ProductForm()
 
     if request.method == "POST":
         return redirect(url_for("admin.products"))
