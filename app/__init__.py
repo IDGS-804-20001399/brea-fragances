@@ -5,6 +5,7 @@ from app.config import Config
 
 db = SQLAlchemy()
 from app.auth.models import User, Role
+from app.customer.models import Customer
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 security = Security()
 
@@ -35,6 +36,8 @@ def create_app():
     return app
 
 def create_db():
+    # Drop database
+    # db.drop_all()
     # Creates the database
     db.create_all()
     # Creates the Roles "admin" and "customer" -- unless they already exist
@@ -57,3 +60,14 @@ def create_db():
     # Gives the "customer" role to the user admin if it doesn't have it yet
     user_datastore.add_role_to_user('customer@gmail.com', 'customer')
     db.session.commit()
+
+    # Adding a customer
+    if not Customer.query.get(1):
+        customer_user = user_datastore.get_user('customer@gmail.com')
+        customer = Customer(names = "Roberto Carlos", 
+                            lastnames="Aguilera Alcantar",
+                            address="Santa cruz #129",
+                            phone="4774008971",
+                            user = customer_user)
+        db.session.add(customer)
+        db.session.commit()

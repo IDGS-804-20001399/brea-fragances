@@ -1,8 +1,10 @@
 from flask import render_template, url_for, flash, redirect, request, Blueprint
 from app.auth.forms import LoginForm, RegistrationForm
 from app.auth.models import User
+from app.customer.models import Customer
 from flask_security.utils import encrypt_password, verify_password, login_user, logout_user
 from flask_security import login_required 
+from app import user_datastore, db
 
 auth = Blueprint('auth', __name__,
                  template_folder='templates')
@@ -31,7 +33,19 @@ def loginFunc():
 def signupFunc():
     form = RegistrationForm()
     if form.validate_on_submit(): 
-        pass
+        encrypted_password = encrypt_password(form.password.data)
+        customer_user = user_datastore.create_user(email=form.email.data, password=encrypted_password)
+        db.session.commit()
+        user_datastore.add_role_to_user(form.email.data, 'customer')
+        customer = Customer(names = "Roberto Carlos", 
+                            lastnames="Aguilera Alcantar",
+                            address="Santa cruz #129",
+                            phone="4774008971",
+                            user = customer_user)
+        db.session.add(customer)
+        db.session.commit()
+        flash('Registration completed. Now log in', 'success')
+        return redirect(url_for('auth.loginFunc'))
     return render_template('signup.html', title='Signup', form=form)
 
 @auth.route('/logout')
