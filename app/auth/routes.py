@@ -37,10 +37,10 @@ def signupFunc():
         customer_user = user_datastore.create_user(email=form.email.data, password=encrypted_password)
         db.session.commit()
         user_datastore.add_role_to_user(form.email.data, 'customer')
-        customer = Customer(names = "Roberto Carlos", 
-                            lastnames="Aguilera Alcantar",
-                            address="Santa cruz #129",
-                            phone="4774008971",
+        customer = Customer(names=form.names.data, 
+                            lastnames=form.lastnames.data,
+                            address=form.address.data,
+                            phone=form.phone.data,
                             user = customer_user)
         db.session.add(customer)
         db.session.commit()
