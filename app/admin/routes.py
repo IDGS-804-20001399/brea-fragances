@@ -6,21 +6,21 @@ admin = Blueprint('admin', __name__,
                  template_folder='templates',
                  url_prefix='/admin')
             
-@admin.route('/all-customers')
-# @login_required
-# @roles_required('admin')
+@admin.route('/customers')
+@login_required
+@roles_required('admin')
 def customers():
     return render_template('customers.html', title='Customers')
 
-@admin.route('/all-products')
-# @login_required
-# @roles_required('admin')
+@admin.route('/products')
+@login_required
+@roles_required('admin')
 def products():
     return render_template('products.html', title='Products')
 
 @admin.route('/add-product', methods=["POST", "GET"])
-# @login_required
-# @roles_required('admin')
+@login_required
+@roles_required('admin')
 def addProduct():
     form=ProductForm()
 

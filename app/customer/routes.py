@@ -9,8 +9,8 @@ customer = Blueprint('customer', __name__,
                  url_prefix='/customer')
             
 @customer.route('/my-info', methods=["POST", "GET"])
-# @login_required
-# @roles_required('customer')
+@login_required
+@roles_required('customer')
 def index():
     form=UserForm()
     customer = Customer.query.filter_by(user_id=current_user.id).first()
@@ -32,13 +32,13 @@ def index():
     return render_template('customer.html', title='My Information', form=form)
 
 @customer.route('/my-orders', methods=["POST", "GET"])
-# @login_required
-# @roles_required('customer')
+@login_required
+@roles_required('customer')
 def orders():
     return render_template('orders.html', title='My Orders')
 
 @customer.route('/order-details', methods=["POST", "GET"])
-# @login_required
-# @roles_required('customer')
+@login_required
+@roles_required('customer')
 def details():
     return render_template('details.html', title='Order Details')

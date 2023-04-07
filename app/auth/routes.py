@@ -18,7 +18,7 @@ def loginFunc():
             if verify_password(form.password.data, user.password):
                 login_user(user, form.remember.data)
                 if user.has_role('admin'):
-                    index = 'admin.index'
+                    index = 'home.index'
                 else:
                     index = 'customer.index'
                 next_page = request.args.get('next')
@@ -53,7 +53,3 @@ def signupFunc():
 def logout():
     logout_user()
     return redirect(url_for('auth.loginFunc'))
-
-@auth.route('/products', methods=["POST", "GET"])
-def details():
-    return render_template('allProducts.html', title='Products')
