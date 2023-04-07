@@ -24,5 +24,5 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Sign Up')
 
     def validate_email(self, email):
-        if user_datastore.get_user(email):
+        if user_datastore.get_user(email.data):
             raise ValidationError('That email is taken. Please choose a different one.')

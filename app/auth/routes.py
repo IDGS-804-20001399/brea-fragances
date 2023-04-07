@@ -52,7 +52,7 @@ def signupFunc():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('auth.loginFunc'))
 
 @auth.route('/products', methods=["POST", "GET"])
 def details():
