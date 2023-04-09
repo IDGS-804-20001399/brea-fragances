@@ -1,0 +1,47 @@
+{% extends "adminBase.html" %}
+
+{% block body %}
+<a class="btn btn-primary mb-3"
+   href="{{ url_for('product.add_product') }}">
+    <i class="bi bi-plus-circle-fill"></i>
+    Add product
+</a>
+<table class="table">
+    <thead>
+        <tr class="table-secondary">
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Image</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr class="table-secondary">
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>
+                <img height="100px"
+                     src="{{ product.image_url }}">
+            </td>
+            <td>
+                <a class="btn btn-warning btn-sm mb-2"
+                   href="{{ url_for('product.edit_product', product_id=product.id) }}">
+                    <i class="bi bi-pencil-square"></i>
+                    Edit
+                </a>
+                <form class="delete"
+                      action="{{ url_for('product.delete_product', product_id=product.id) }}"
+                      method="post">
+                    <button class="btn btn-danger btn-sm">
+                        <i class="bi bi-trash-fill"></i>
+                        Delete
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock body %}

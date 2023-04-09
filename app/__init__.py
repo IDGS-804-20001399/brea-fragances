@@ -1,9 +1,12 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_security import Security, SQLAlchemyUserDatastore, utils
+from flask_uploads import UploadSet, configure_uploads, IMAGES
 from app.config import Config
+import os
 
 db = SQLAlchemy()
+product_pics =  UploadSet('products', IMAGES, lambda app: os.path.join(app.root_path, 'static/images/products'))
 from app.auth.models import User, Role
 from app.customer.models import Customer
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
@@ -13,15 +16,16 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
     db.init_app(app)
+    configure_uploads(app, product_pics)
 
     from app.auth.routes import auth
-    from app.admin.routes import admin
+    from app.product.routes import product
     from app.customer.routes import customer
     from app.home.routes import home
 
     app.register_blueprint(home)
     app.register_blueprint(auth)
-    app.register_blueprint(admin)
+    app.register_blueprint(product)
     app.register_blueprint(customer)
 
     security.init_app(app, user_datastore)

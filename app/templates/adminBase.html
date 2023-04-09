@@ -1,18 +1,22 @@
 {% extends 'bootstrap.html' %}
 
+{% block links %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+{% endblock %}
+
 {% block content %}
-<style>
-  body{
-    background-color: #222222;
-  }
-</style>
+<!-- <style>
+</style> -->
 
 {% from '_macros.html' import navbar with context %}
+{% from '_macros.html' import display_alerts %}
 {{ navbar() }}
 
 <div class="container-fluid py-5">
     <h3 class="display-6 fw-bold" style="color: whitesmoke;">{{ current_user.email }}</h3>
     <h1 class="display-5 fw-bold text-center" style="color: whitesmoke;">{{ title }}</h1>
+
+    {{ display_alerts() }}
   
     {% block body %}
 
@@ -21,3 +25,6 @@
 </div>
 {% endblock content %}
 
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+{% endblock %}
