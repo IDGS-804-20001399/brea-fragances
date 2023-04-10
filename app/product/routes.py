@@ -1,7 +1,7 @@
 import os
 from flask import (render_template, url_for, flash, redirect, 
-                    request, Blueprint, current_app)
-from flask_security import login_required, current_user, roles_required
+                    request, Blueprint)
+from flask_security import login_required, roles_required
 from app.product.forms import ProductForm
 from app.product.models import Product
 from app import product_pics, db
@@ -16,6 +16,7 @@ product = Blueprint('product', __name__,
 def products():
     products = Product.query.all()
     return render_template('products.html', title='Products', products=products)
+
 
 @product.route('/add-product', methods=["POST", "GET"])
 @login_required
@@ -40,11 +41,12 @@ def add_product():
             product.image_filename = image_filename
             product.image_url = image_url
             db.session.commit()
-            flash('product saved successfully', 'success')
+            flash('Product saved successfully', 'success')
             return redirect(url_for("product.products"))
         else:
             flash('Please select an image', 'danger')
     return render_template('addProduct.html', title='Add Product', form=form, default_image = default_image)
+
 
 @product.route('/edit-product/<int:product_id>', methods=["POST", "GET"])
 @login_required
@@ -58,7 +60,10 @@ def edit_product(product_id):
         product.price = form.price.data
         if form.image.data:
             previos_image_path = product_pics.path(product.image_filename)
-            os.remove(previos_image_path)
+            try:
+                os.remove(previos_image_path)
+            except:
+                pass
             image_filename = product_pics.save(form.image.data, name=f'{product.id}.')
             image_url = url_for(
                 "_uploads.uploaded_file", 
@@ -68,18 +73,24 @@ def edit_product(product_id):
             product.image_filename = image_filename
             product.image_url = image_url
         db.session.commit()
-        flash('product saved successfully', 'success')
+        flash('Product saved successfully', 'success')
         return redirect(url_for('product.products'))
     elif request.method == 'GET':
         form.name.data = product.name
         form.price.data = product.price
     return render_template('addProduct.html', title='Edit Product', form=form, default_image = default_image)
 
+
 @product.route('/delete-product/<int:product_id>', methods=["POST"])
 @login_required
 @roles_required('admin')
 def delete_product(product_id):
     product = Product.query.get_or_404(product_id)
+    previos_image_path = product_pics.path(product.image_filename)
+    try:
+        os.remove(previos_image_path)
+    except:
+        pass
     db.session.delete(product)
     db.session.commit()
     flash('Product deleted successfully', 'success')

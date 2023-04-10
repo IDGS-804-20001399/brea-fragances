@@ -7,6 +7,7 @@ import os
 
 db = SQLAlchemy()
 product_pics =  UploadSet('products', IMAGES, lambda app: os.path.join(app.root_path, 'static/images/products'))
+supply_pics =  UploadSet('supplies', IMAGES, lambda app: os.path.join(app.root_path, 'static/images/supplies'))
 from app.auth.models import User, Role
 from app.customer.models import Customer
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
@@ -16,27 +17,23 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
     db.init_app(app)
-    configure_uploads(app, product_pics)
+    configure_uploads(app, [product_pics, supply_pics])
 
     from app.auth.routes import auth
     from app.product.routes import product
+    from app.supply.routes import supply
     from app.customer.routes import customer
     from app.home.routes import home
 
     app.register_blueprint(home)
     app.register_blueprint(auth)
     app.register_blueprint(product)
+    app.register_blueprint(supply)
     app.register_blueprint(customer)
 
     security.init_app(app, user_datastore)
     with app.app_context():
         create_db()
-    # from flaskblog.users.routes import users
-    # from flaskblog.posts.routes import posts
-    # from flaskblog.main.routes import main
-    # app.register_blueprint(users)
-    # app.register_blueprint(posts)
-    # app.register_blueprint(main)
     return app
 
 def create_db():
