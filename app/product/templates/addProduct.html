@@ -14,6 +14,37 @@
     {{ render_field(form.name) }}
     {{ render_field(form.price) }}
     {{ render_image_field(form.image, default_image) }}
+
+    <table class="table">
+      <h4 style="color: whitesmoke;">Supplies</h4>
+      <thead>
+          <tr class="table-secondary">
+              <th scope="col">Name</th>
+              <th scope="col">Cost</th>
+              <th scope="col">Buy unit</th>
+              <th scope="col">Use unit</th>
+              <th scope="col">Equivalence</th>
+              <th scope="col">Required Amount</th>
+              <th scope="col">Selected</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for product in supplies %}
+          <tr class="table-secondary">
+              <td>{{ product.name }}</td>
+              <td>{{ product.cost }}</td>
+              <td>{{ product.buy_unit }}</td>
+              <td>{{ product.use_unit }}</td>
+              <td>{{ product.equivalence }}</td>
+              <td><input type="number" min="1" name="Amount:{{product}}"></td>
+              <input type="hidden" value="{{product.id}}" name="{{product}}">
+              <td><div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" name="Select:{{ product }}">
+              </div></td>
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table>
     
 
     {{ form.submit(class="btn btn-warning") }}

@@ -4,6 +4,7 @@ from flask import (render_template, url_for, flash, redirect,
 from flask_security import login_required, roles_required
 from app.product.forms import ProductForm
 from app.product.models import Product, ProductSupplies
+from app.supply.models import Supply
 from app import product_pics, db
 
 
@@ -26,12 +27,32 @@ def products():
 def add_product():
     form=ProductForm()
     default_image = url_for('static', filename='images/preview.png')
+
+    supplies = Supply.query.all()
+
     if form.validate_on_submit():
         if form.image.data:
             product = Product(
                 name = form.name.data,
                 price = form.price.data
             )
+            IDs = []
+            amounts = []
+            for i in range(len(supplies)):
+                select = request.form.get('Select:<Supply ' + str(i+1) + '>')
+                if (select == "on"):
+                    amount = request.form.get('Amount:<Supply ' + str(i+1) + '>')
+                    id = request.form.get('<Supply ' + str(i+1) + '>')
+                    IDs.append(id)
+                    amounts.append(amount)
+
+                    print("\033[1m"+"\033[95m"+"==>> amount: " + "\033[96m", 'Amount:<Supply ' + str(i+1) + '>', amount)
+                    print("\033[1m"+"\033[95m"+"==>> select: " + "\033[96m", 'Select:<Supply ' + str(i+1) + '>', select)
+                    print("\033[1m"+"\033[95m"+"==>> id: " + "\033[96m", '<Supply ' + str(i+1) + '>', id)
+            for i in IDs:
+                print('ID',i)
+            for i in amounts:
+                print('Amount',i)
             db.session.add(product)
             db.session.commit()
 
@@ -48,7 +69,7 @@ def add_product():
             return redirect(url_for("product.products"))
         else:
             flash('Please select an image', 'danger')
-    return render_template('addProduct.html', title='Add Product', form=form, default_image = default_image)
+    return render_template('addProduct.html', title='Add Product', form=form, default_image = default_image, supplies=supplies)
 
 
 @product.route('/edit-product/<int:product_id>', methods=["POST", "GET"])
