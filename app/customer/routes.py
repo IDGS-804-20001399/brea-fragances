@@ -42,3 +42,21 @@ def orders():
 @roles_required('customer')
 def details():
     return render_template('details.html', title='Order Details')
+
+@customer.route('/customers', methods=["POST", "GET"])
+@login_required
+@roles_required('admin')
+def customers():
+    return render_template('customers.html', title='Customers list')
+
+@customer.route('/customers-orders', methods=["POST", "GET"])
+@login_required
+@roles_required('admin')
+def customersOrders():
+    return render_template('customersOrders.html', title='Customers orders')
+
+@customer.route('/statistics', methods=["POST", "GET"])
+@login_required
+@roles_required('admin')
+def statistics():
+    return render_template('statistics.html', title='Statistics')
