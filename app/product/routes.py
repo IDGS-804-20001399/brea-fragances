@@ -3,12 +3,14 @@ from flask import (render_template, url_for, flash, redirect,
                     request, Blueprint)
 from flask_security import login_required, roles_required
 from app.product.forms import ProductForm
-from app.product.models import Product
+from app.product.models import Product, ProductSupplies
 from app import product_pics, db
+
 
 product = Blueprint('product', __name__,
                  template_folder='templates',
                  url_prefix='/admin')
+
 
 @product.route('/products')
 @login_required
@@ -32,6 +34,7 @@ def add_product():
             )
             db.session.add(product)
             db.session.commit()
+
             image_filename = product_pics.save(form.image.data, name=f'{product.id}.')
             image_url = url_for(
                 "_uploads.uploaded_file", 
