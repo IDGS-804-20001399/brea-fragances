@@ -59,10 +59,10 @@
 {% endmacro %}
 
 {% macro navbar() %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand"
-       href="#">Logo</a>
+       href="/"><img src="/static/images/bf-logo-nobg.png" alt="" width="60" height="50"></a>
     <button class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -129,12 +129,30 @@
               </a>
             </li>
             <li>
-              <hr class="dropdown-divider">
+              <a class="dropdown-item"
+              href="{{ url_for('supply.supplies') }}">Supplies</a>
             </li>
             <li>
               <a class="dropdown-item"
-                 href="{{ url_for('supply.supplies') }}">Supplies</a>
+              href="{{ url_for('customer.customersOrders') }}">Orders</a>
             </li>
+            <li>
+              <a class="dropdown-item"
+              href="{{ url_for('product.details') }}">Details</a>
+            </li>
+            <li>
+              <a class="dropdown-item"
+              href="{{ url_for('customer.customers') }}">Customers</a>
+            </li>
+            <li>
+              <a class="dropdown-item"
+              href="{{ url_for('customer.statistics') }}">Statistics</a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item"
+              href="{{ url_for('auth.logout') }}">Logout</a></li>
             <!-- <li><a class="dropdown-item"
                  href="/admin/add-product">Add Product</a></li> -->
           </ul>
@@ -142,17 +160,21 @@
         {% endif %}
       </ul>
       <div class="d-flex">
+        <form action="{{ url_for('product.search') }}" method="post" class="input-group mb-3" style="margin-right: 10px;">
+          <input type="text" name="search" class="form-control" placeholder="Search Products" aria-label="Search Products" aria-describedby="button-addon2">
+          <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-search"></i></button>
+        </form>
         {% if current_user.is_authenticated and current_user.has_role('customer')%}
-        <a style="margin-right: 10px;"
+        <a style="margin-right: 10px; max-height: 50%;"
            class="btn btn-outline-dark btn-sm "
            href="/cart"
            role="button"><i class="fa fa-shopping-cart"></i> My Cart</a>
         {% endif %}
         {% if not current_user.is_authenticated %}
-        <a style="margin-right: 10px;"
+        <a style="margin-right: 10px; max-height: 40px;"
            class="btn btn-dark"
            href="/login">Login</a>
-        <a style="margin-right: 10px;"
+        <a style="margin-right: 10px; max-height: 40px;"
            class="btn btn-warning"
            href="/signup">Signup</a>
         {% endif %}

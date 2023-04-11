@@ -34,6 +34,7 @@ def add_product():
         if form.image.data:
             product = Product(
                 name = form.name.data,
+                description = form.description.data,
                 price = form.price.data
             )
             IDs = []
@@ -81,6 +82,7 @@ def edit_product(product_id):
     default_image = product.image_url
     if form.validate_on_submit():
         product.name = form.name.data
+        product.description = form.description.data
         product.price = form.price.data
         if form.image.data:
             previos_image_path = product_pics.path(product.image_filename)
@@ -119,3 +121,16 @@ def delete_product(product_id):
     db.session.commit()
     flash('Product deleted successfully', 'success')
     return redirect(url_for('product.products'))
+
+@product.route('/product-details', methods=["POST", "GET"])
+@login_required
+def details():
+    return render_template('detail.html', title='Details')
+
+@product.route('/products/search', methods=["POST", "GET"])
+@login_required
+def search():
+    search="%{}%".format(request.form.get('search'))
+    products = Product.query.filter(Product.name.like(search)).all()
+
+    return render_template('search.html', title='Results of "'+search.replace('%', '')+'"', products=products)
