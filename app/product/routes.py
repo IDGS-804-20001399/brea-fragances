@@ -119,3 +119,12 @@ def delete_product(product_id):
     db.session.commit()
     flash('Product deleted successfully', 'success')
     return redirect(url_for('product.products'))
+
+
+@product.route('/products/search', methods=["POST", "GET"])
+@login_required
+def search():
+    search="%{}%".format(request.form.get('search'))
+    products = Product.query.filter(Product.name.like(search)).all()
+
+    return render_template('search.html', title='Results of "'+search.replace('%', '')+'"', products=products)

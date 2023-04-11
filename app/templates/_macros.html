@@ -62,7 +62,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand"
-       href="#">Logo</a>
+       href="/"><img src="/static/images/bf-logo-nobg.png" alt="" width="60" height="50"></a>
     <button class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -129,12 +129,14 @@
               </a>
             </li>
             <li>
-              <hr class="dropdown-divider">
+              <a class="dropdown-item"
+              href="{{ url_for('supply.supplies') }}">Supplies</a>
             </li>
             <li>
-              <a class="dropdown-item"
-                 href="{{ url_for('supply.supplies') }}">Supplies</a>
+              <hr class="dropdown-divider">
             </li>
+            <li><a class="dropdown-item"
+              href="{{ url_for('auth.logout') }}">Logout</a></li>
             <!-- <li><a class="dropdown-item"
                  href="/admin/add-product">Add Product</a></li> -->
           </ul>
@@ -142,6 +144,10 @@
         {% endif %}
       </ul>
       <div class="d-flex">
+        <form action="{{ url_for('product.search') }}" method="post" class="input-group mb-3">
+          <input type="text" name="search" class="form-control" placeholder="Search Products" aria-label="Search Products" aria-describedby="button-addon2">
+          <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-search"></i></button>
+        </form>
         {% if current_user.is_authenticated and current_user.has_role('customer')%}
         <a style="margin-right: 10px;"
            class="btn btn-outline-dark btn-sm "
