@@ -34,6 +34,7 @@ def add_product():
         if form.image.data:
             product = Product(
                 name = form.name.data,
+                description = form.description.data,
                 price = form.price.data
             )
             IDs = []
@@ -81,6 +82,7 @@ def edit_product(product_id):
     default_image = product.image_url
     if form.validate_on_submit():
         product.name = form.name.data
+        product.description = form.description.data
         product.price = form.price.data
         if form.image.data:
             previos_image_path = product_pics.path(product.image_filename)

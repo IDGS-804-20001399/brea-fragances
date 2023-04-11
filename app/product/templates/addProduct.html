@@ -12,6 +12,7 @@
       style="max-width: 50%; margin: auto;">
     {{ form.hidden_tag() }}
     {{ render_field(form.name) }}
+    {{ render_field(form.description) }}
     {{ render_field(form.price) }}
     {{ render_image_field(form.image, default_image) }}
 
