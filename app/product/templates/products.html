@@ -12,6 +12,7 @@
             <th scope="col">Name</th>
             <th scope="col">Price</th>
             <th scope="col">Image</th>
+            <th scope="col">Supplies</th>
             <th scope="col">Actions</th>
         </tr>
     </thead>
@@ -23,6 +24,16 @@
             <td>
                 <img height="100px"
                      src="{{ product.image_url }}">
+            </td>
+            <td>
+                <ul>
+                    {% for supply in product.productSupplies %}
+                        <li>{{ supply.supply.name }}
+                            {{ supply.quantity }}
+                            {{ supply.supply.use_unit }}
+                        </li>
+                    {% endfor %}
+                </ul>
             </td>
             <td>
                 <a class="btn btn-warning btn-sm mb-2"

@@ -18,6 +18,19 @@ def supplies():
     return render_template('supplies.html', title='Supplies', supplies=supplies)
 
 
+@supply.route('/supply-inventory')
+@login_required
+@roles_required('admin')
+def inventory():
+#     select s.*, i.buy_date, i.expiration_date, 
+# sum(i.quantity) stock_buy_unit,
+# sum(i.quantity) * s.equivalence stock_use_unit
+# from supply s 
+# inner join supply_inventory i on s.id = i.supply_id 
+# group by s.id;
+    pass
+
+
 @supply.route('/add-supply', methods=["POST", "GET"])
 @login_required
 @roles_required('admin')

@@ -8,47 +8,115 @@
 <form method="POST"
       action=""
       class="row g-3"
+      id="addForm"
       enctype="multipart/form-data"
       style="max-width: 50%; margin: auto;">
-    {{ form.hidden_tag() }}
-    {{ render_field(form.name) }}
-    {{ render_field(form.description) }}
-    {{ render_field(form.price) }}
-    {{ render_image_field(form.image, default_image) }}
+  {{ form.hidden_tag() }}
+  {{ render_field(form.name) }}
+  {{ render_field(form.description) }}
+  {{ render_field(form.price) }}
+  {{ render_image_field(form.image, default_image) }}
 
-    <table class="table">
-      <h4 style="color: whitesmoke;">Supplies</h4>
-      <thead>
-          <tr class="table-secondary">
-              <th scope="col">Name</th>
-              <th scope="col">Cost</th>
-              <th scope="col">Buy unit</th>
-              <th scope="col">Use unit</th>
-              <th scope="col">Equivalence</th>
-              <th scope="col">Required Amount</th>
-              <th scope="col">Selected</th>
-          </tr>
-      </thead>
-      <tbody>
-          {% for product in supplies %}
-          <tr class="table-secondary">
-              <td>{{ product.name }}</td>
-              <td>{{ product.cost }}</td>
-              <td>{{ product.buy_unit }}</td>
-              <td>{{ product.use_unit }}</td>
-              <td>{{ product.equivalence }}</td>
-              <td><input type="number" min="1" name="Amount:{{product}}"></td>
-              <input type="hidden" value="{{product.id}}" name="{{product}}">
-              <td><div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" name="Select:{{ product }}">
-              </div></td>
-          </tr>
-          {% endfor %}
-      </tbody>
+  <h4 style="color: whitesmoke;">Supplies</h4>
+
+  {{ form.supplies(class="d-none") }}
+  {% if form.supplies.errors %}
+  <div class="invalid-feedback">
+    {% for error in form.supplies.errors %}
+    <span>{{ error }}</span>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <table class="table">
+    <thead>
+      <tr class="table-secondary">
+        <th scope="col">Name</th>
+        <th scope="col">Cost</th>
+        <th scope="col">Buy unit</th>
+        <th scope="col">Use unit</th>
+        <th scope="col">Equivalence</th>
+        <th scope="col">Required Amount</th>
+        <th scope="col">Selected</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for supply in supplies %}
+      <tr class="table-secondary">
+        <td>{{ supply.name }}</td>
+        <td>{{ supply.cost }}</td>
+        <td>{{ supply.buy_unit }}</td>
+        <td>{{ supply.use_unit }}</td>
+        <td>{{ supply.equivalence }}</td>
+        <td><input type="number"
+                 min="1"
+                 data-id="{{supply.id}}"
+                 placeholder="1 is the minimum"
+                 name="supplyAmount"
+                 id="amount{{supply.id}}"></td>
+        <input type="hidden"
+               value="{{supply.id}}"
+               name="supply_id">
+        <td>
+          <div class="form-check form-switch">
+            <input class="form-check-input"
+                   type="checkbox"
+                   name="supplyCheck"
+                   data-id="{{supply.id}}"
+                   disabled
+                   id="check{{supply.id}}">
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
   </table>
-    
 
-    {{ form.submit(class="btn btn-warning") }}
+
+  {{ form.save(class="btn btn-warning") }}
 </form>
 
 {% endblock body %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+  const form = document.getElementById('addForm');
+  const suppliesInput = document.getElementById('supplies');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const supplies = [];
+    document.querySelectorAll('input[type=checkbox][name=supplyCheck]:checked').forEach(i => {
+      const id = i.dataset.id;
+      const amount = document.getElementById(`amount${id}`).value;
+      supplies.push({ id: id, amount: amount })
+    });
+    const suppliesJson = JSON.stringify(supplies);
+    suppliesInput.value = suppliesJson;
+    form.submit(); 
+  });
+  document.querySelectorAll('input[name=supplyAmount]').forEach(i => {
+    i.addEventListener('input', (e) => {
+      const id = i.dataset.id;
+      const check = document.getElementById(`check${id}`);
+      if (i.value >= 1) {
+        check.removeAttribute('disabled');
+        check.checked = true;
+      } else {
+        check.checked = false;
+        check.setAttribute('disabled', '');
+      }
+    });
+  });
+
+  document.querySelectorAll('input[type=checkbox][name=supplyCheck]').forEach(i => {
+    i.addEventListener('change', (e) => {
+      const id = i.dataset.id;
+      const input = document.getElementById(`amount${id}`);
+      if (!i.checked) {
+        input.value = "";
+        i.setAttribute('disabled', '');
+      }
+    });
+  });
+</script>
+{% endblock %}

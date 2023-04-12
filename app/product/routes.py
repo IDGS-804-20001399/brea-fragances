@@ -1,4 +1,4 @@
-import os
+import os, json
 from flask import (render_template, url_for, flash, redirect, 
                     request, Blueprint)
 from flask_security import login_required, roles_required
@@ -27,49 +27,47 @@ def products():
 def add_product():
     form=ProductForm()
     default_image = url_for('static', filename='images/preview.png')
-
     supplies = Supply.query.all()
-
     if form.validate_on_submit():
-        if form.image.data:
-            product = Product(
-                name = form.name.data,
-                description = form.description.data,
-                price = form.price.data
-            )
-            IDs = []
-            amounts = []
-            for i in range(len(supplies)):
-                select = request.form.get('Select:<Supply ' + str(i+1) + '>')
-                if (select == "on"):
-                    amount = request.form.get('Amount:<Supply ' + str(i+1) + '>')
-                    id = request.form.get('<Supply ' + str(i+1) + '>')
-                    IDs.append(id)
-                    amounts.append(amount)
+        try:
+            supplies_data = json.loads(form.supplies.data)
+            if len(supplies_data) > 0:
+                if form.image.data:
+                    product = Product(
+                        name = form.name.data,
+                        description = form.description.data,
+                        price = form.price.data
+                    )
+                    db.session.add(product)
+                    db.session.commit()
 
-                    print("\033[1m"+"\033[95m"+"==>> amount: " + "\033[96m", 'Amount:<Supply ' + str(i+1) + '>', amount)
-                    print("\033[1m"+"\033[95m"+"==>> select: " + "\033[96m", 'Select:<Supply ' + str(i+1) + '>', select)
-                    print("\033[1m"+"\033[95m"+"==>> id: " + "\033[96m", '<Supply ' + str(i+1) + '>', id)
-            for i in IDs:
-                print('ID',i)
-            for i in amounts:
-                print('Amount',i)
-            db.session.add(product)
-            db.session.commit()
+                    for supply in supplies_data:
+                        productSupplies = ProductSupplies(
+                            product_id = product.id,
+                            supply_id = supply['id'],
+                            quantity = supply['amount']
+                        )
+                        db.session.add(productSupplies)
 
-            image_filename = product_pics.save(form.image.data, name=f'{product.id}.')
-            image_url = url_for(
-                "_uploads.uploaded_file", 
-                setname=product_pics.name, 
-                filename=image_filename
-            )
-            product.image_filename = image_filename
-            product.image_url = image_url
-            db.session.commit()
-            flash('Product saved successfully', 'success')
-            return redirect(url_for("product.products"))
-        else:
-            flash('Please select an image', 'danger')
+
+
+                    image_filename = product_pics.save(form.image.data, name=f'{product.id}.')
+                    image_url = url_for(
+                        "_uploads.uploaded_file", 
+                        setname=product_pics.name, 
+                        filename=image_filename
+                    )
+                    product.image_filename = image_filename
+                    product.image_url = image_url
+                    db.session.commit()
+                    flash('Product saved successfully', 'success')
+                    return redirect(url_for("product.products"))
+                else:
+                    flash('Please select an image', 'danger')
+            else:
+                flash('Please select some suplies', 'danger')
+        except:
+            flash('Invalid supplies format', 'danger')
     return render_template('addProduct.html', title='Add Product', form=form, default_image = default_image, supplies=supplies)
 
 
