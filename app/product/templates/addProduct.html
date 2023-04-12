@@ -40,7 +40,8 @@
       </tr>
     </thead>
     <tbody>
-      {% for supply in supplies %}
+      {% for supply in allSupplies %}
+      {% if supply.id in ids %}
       <tr class="table-secondary">
         <td>{{ supply.name }}</td>
         <td>{{ supply.cost }}</td>
@@ -52,7 +53,8 @@
                  data-id="{{supply.id}}"
                  placeholder="1 is the minimum"
                  name="supplyAmount"
-                 id="amount{{supply.id}}"></td>
+                 id="amount{{supply.id}}"
+                 value="{{ quantities[loop.index-1] }}"></td>
         <input type="hidden"
                value="{{supply.id}}"
                name="supply_id">
@@ -62,11 +64,39 @@
                    type="checkbox"
                    name="supplyCheck"
                    data-id="{{supply.id}}"
-                   disabled
+                   checked
                    id="check{{supply.id}}">
           </div>
         </td>
       </tr>
+        {% else %}
+        <tr class="table-secondary">
+          <td>{{ supply.name }}</td>
+          <td>{{ supply.cost }}</td>
+          <td>{{ supply.buy_unit }}</td>
+          <td>{{ supply.use_unit }}</td>
+          <td>{{ supply.equivalence }}</td>
+          <td><input type="number"
+                   min="1"
+                   data-id="{{supply.id}}"
+                   placeholder="1 is the minimum"
+                   name="supplyAmount"
+                   id="amount{{supply.id}}"></td>
+          <input type="hidden"
+                 value="{{supply.id}}"
+                 name="supply_id">
+          <td>
+            <div class="form-check form-switch">
+              <input class="form-check-input"
+                     type="checkbox"
+                     name="supplyCheck"
+                     data-id="{{supply.id}}"
+                     disabled
+                     id="check{{supply.id}}">
+            </div>
+          </td>
+        </tr>
+      {% endif %}
       {% endfor %}
     </tbody>
   </table>

@@ -76,33 +76,88 @@ def add_product():
 @roles_required('admin')
 def edit_product(product_id):
     product = Product.query.get_or_404(product_id)
+    allSupplies = Supply.query.all()
+    productSupplies = ProductSupplies.query.filter_by(product_id=product.id).all()
+    suppliesData = []
+    quantities = []
+    ids =[]
+    for item in productSupplies:
+        suppliesData.append(Supply.query.filter_by(id=item.supply_id).first())
+        quantities.append(item.quantity)
+        ids.append(item.supply_id)
+
     form = ProductForm()
     default_image = product.image_url
+    
     if form.validate_on_submit():
-        product.name = form.name.data
-        product.description = form.description.data
-        product.price = form.price.data
-        if form.image.data:
-            previos_image_path = product_pics.path(product.image_filename)
-            try:
-                os.remove(previos_image_path)
-            except:
-                pass
-            image_filename = product_pics.save(form.image.data, name=f'{product.id}.')
-            image_url = url_for(
-                "_uploads.uploaded_file", 
-                setname=product_pics.name, 
-                filename=image_filename
-            )
-            product.image_filename = image_filename
-            product.image_url = image_url
-        db.session.commit()
-        flash('Product saved successfully', 'success')
-        return redirect(url_for('product.products'))
+        try:
+            supplies_data = json.loads(form.supplies.data)
+            if len(supplies_data) > 0:
+                if form.image.data:
+                    product.name = form.name.data
+                    print("\033[1m"+"\033[95m"+"==>> product: " + "\033[96m", product.id)
+                    product.description = form.description.data
+                    product.price = form.price.data
+                    if form.image.data:
+                        previos_image_path = product_pics.path(product.image_filename)
+                        try:
+                            os.remove(previos_image_path)
+                        except:
+                            pass
+                        image_filename = product_pics.save(form.image.data, name=f'{product.id}.')
+                        image_url = url_for(
+                            "_uploads.uploaded_file", 
+                            setname=product_pics.name, 
+                            filename=image_filename
+                        )
+                        product.image_filename = image_filename
+                        product.image_url = image_url
+
+                    newSupplies = []
+                    for element in supplies_data:
+                        if element['id'] not in ids:
+                            newSupplies.append(int(element['id']))
+
+                    sameSupplies = []
+                    for element in supplies_data:
+                        if int(element['id']) in ids:
+                            sameSupplies.append(int(element['id']))
+                    
+                    deleteSupplies = []
+                    for element in ids:
+                        if element not in sameSupplies and element not in newSupplies:
+                            deleteSupplies.append(element)
+
+                    for supply in supplies_data:
+                        if supply['id'] not in sameSupplies and supply['id'] in newSupplies:
+                            productSupplies = ProductSupplies(
+                                product_id = product.id,
+                                supply_id = supply['id'],
+                                quantity = supply['amount'])
+                            db.session.add(productSupplies)
+
+                        elif supply['id'] in sameSupplies and supply['id'] in newSupplies:
+                            obj = ProductSupplies.query.where(supply_id=supply['id'], product_id=product.id)
+                            obj.quantity = supply['amount']
+                        if supply['id'] in deleteSupplies:
+                            obj = ProductSupplies.query.where(supply_id=supply['id'], product_id=product.id)
+                            db.session.delete(obj)
+                        
+
+                    db.session.commit()
+                    flash('Product saved successfully', 'success')
+                    return redirect(url_for("product.products"))
+                else:
+                    flash('Please select an image', 'danger')
+            else:
+                flash('Please select some suplies', 'danger')
+        except:
+            flash('Invalid supplies format', 'danger')
     elif request.method == 'GET':
         form.name.data = product.name
         form.price.data = product.price
-    return render_template('addProduct.html', title='Edit Product', form=form, default_image = default_image)
+        form.description.data = product.description
+    return render_template('addProduct.html', ids=ids,allSupplies=allSupplies, quantities=quantities, title='Edit Product', form=form, default_image = default_image)
 
 
 @product.route('/delete-product/<int:product_id>', methods=["POST"])
