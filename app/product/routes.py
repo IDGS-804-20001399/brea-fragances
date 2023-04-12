@@ -120,10 +120,11 @@ def delete_product(product_id):
     flash('Product deleted successfully', 'success')
     return redirect(url_for('product.products'))
 
-@product.route('/product-details', methods=["POST", "GET"])
+@product.route('/product-details/<int:product_id>', methods=["POST", "GET"])
 @login_required
-def details():
-    return render_template('detail.html', title='Details')
+def details(product_id):
+    product = Product.query.get_or_404(product_id)
+    return render_template('details.html', title='Details', product=product)
 
 @product.route('/products/search', methods=["POST", "GET"])
 @login_required
