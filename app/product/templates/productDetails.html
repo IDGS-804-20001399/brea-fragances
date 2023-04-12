@@ -1,0 +1,63 @@
+{% extends "adminBase.html" %}
+
+{% block body %}
+<a class="btn btn-outline-light mb-3"
+   href="{{ url_for('product.products') }}">
+    <i class="bi bi-arrow-left"></i>
+    Back
+</a>
+<table class="table">
+    <thead>
+        <tr class="table-secondary">
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Image</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="table-secondary">
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>
+                <img height="100px"
+                     src="{{ product.image_url }}">
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 style="color: whitesmoke;">Supplies</h2>
+<table class="table">
+    <thead>
+        <tr class="table-secondary">
+            <th scope="col">Name</th>
+            <th scope="col">Cost</th>
+            <th scope="col">Buy Unit</th>
+            <th scope="col">Use Unit</th>
+            <th scope="col">Equivalence</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Image</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if supplies %}
+        {% for supply in supplies %}
+            
+        <tr class="table-secondary">
+            <td>{{ supply.name }}</td>
+            <td>{{ supply.cost }}</td>
+            <td>{{ supply.buy_unit }}</td>
+            <td>{{ supply.use_unit }}</td>
+            <td>{{ supply.equivalence }}</td>
+            <td>{{ quantities[loop.index-1] }}</td>
+            <td>
+                <img height="100px"
+                src="{{ supply.image_url }}">
+            </td>
+        </tr>
+        
+        {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+{% endblock body %}

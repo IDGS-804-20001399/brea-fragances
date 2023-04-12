@@ -122,11 +122,11 @@ def delete_product(product_id):
     flash('Product deleted successfully', 'success')
     return redirect(url_for('product.products'))
 
-@product.route('/product-details/<int:product_id>', methods=["POST", "GET"])
+@product.route('/product-info/<int:product_id>', methods=["POST", "GET"])
 @login_required
-def details(product_id):
+def productInfo(product_id):
     product = Product.query.get_or_404(product_id)
-    return render_template('details.html', title='Details', product=product)
+    return render_template('singleProduct.html', title='Details', product=product)
 
 @product.route('/products/search', methods=["POST", "GET"])
 @login_required
@@ -135,3 +135,17 @@ def search():
     products = Product.query.filter(Product.name.like(search)).all()
 
     return render_template('search.html', title='Results of "'+search.replace('%', '')+'"', products=products)
+
+@product.route('/product-details/<int:product_id>', methods=["POST", "GET"])
+@login_required
+@roles_required('admin')
+def details(product_id):
+    product = Product.query.get_or_404(product_id)
+    productSupplies = ProductSupplies.query.filter_by(product_id=product.id).all()
+    supplies = []
+    quantities = []
+    for item in productSupplies:
+        supplies.append(Supply.query.filter_by(id=item.supply_id).first())
+        quantities.append(item.quantity)
+    return render_template('productDetails.html', title='Details', 
+                           product=product, supplies=supplies, quantities=quantities, productSupplies=productSupplies)

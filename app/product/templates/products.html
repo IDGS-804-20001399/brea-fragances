@@ -30,6 +30,11 @@
                     <i class="bi bi-pencil-square"></i>
                     Edit
                 </a>
+                <a class="btn btn-primary btn-sm mb-2"
+                href="{{ url_for('product.details', product_id=product.id) }}">
+                    <i class="bi bi-eye"></i>
+                    Details
+                </a>
                 <form class="delete"
                       action="{{ url_for('product.delete_product', product_id=product.id) }}"
                       method="post">

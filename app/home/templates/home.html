@@ -41,7 +41,7 @@
                                   <img class="img-thumbnail" alt="{{ item.name }}" src="{{ item.image_url }}">
                               </div>
                               <div class="col">
-                                  <a href="{{ url_for('product.details', product_id=item.id) }}" style="text-decoration: none;">
+                                  <a href="{{ url_for('product.productInfo', product_id=item.id) }}" style="text-decoration: none;">
                                     <h5 class="card-title">{{ item.name }}</h5>
                                   </a>
                                   <p class="card-text">$ {{ item.price }}</p>
