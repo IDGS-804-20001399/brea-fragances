@@ -34,7 +34,7 @@ def index():
 @customer.route('/my-orders', methods=["POST", "GET"])
 @login_required
 @roles_required('customer')
-def orders():
+def myOrders():
     return render_template('orders.html', title='My Orders')
 
 @customer.route('/order-details', methods=["POST", "GET"])

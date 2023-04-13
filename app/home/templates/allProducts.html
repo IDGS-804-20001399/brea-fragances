@@ -1,25 +1,26 @@
 {% extends "base.html" %}
 
 {% block body %}
-<div class="container m-8 py-5">
+<div class="container m-8 py-5" style="margin-top: 4%; margin-bottom: 4%;">
     <h1 class="display-5 fw-bold text-center" >{{ title }}</h1>
         {% if products %}
-        <div class="row">
+        <div class="row " style="margin: auto; margin-bottom: 10%; min-height: 210px;">
             {% for item in products %}
-                <div class="col-sm-6 mb-3 mb-sm-0 my-3">
-                    <div class="card">
+                <div class="col-sm-6 mb-3 mb-sm-0 my-3 " style="min-height: 210px;">
+                    <div class="card animate__animated animate__backInLeft shadow" style="min-height: 210px;">
                       <div class="card-body">
-                          <div class="row">
-                            <div class="col-3">
-                                <img class="img-fluid img-thumbnail" alt="{{ item.name }}" src="{{ item.image_url }}">
-                            </div>
-                              <div class="col">
-                                <a href="{{ url_for('product.productInfo', product_id=item.id) }}" style="text-decoration: none;">
+                          <div class="row" >
+                              <div class="col-3">
+                                  <img class="img-thumbnail product-image shadow" alt="{{ item.name }}" src="{{ item.image_url }}">
+                              </div>
+                              <div class="col product-link">
+                                  <a href="{{ url_for('product.productInfo', product_id=item.id) }}" style="text-decoration: none;">
                                     <h5 class="card-title">{{ item.name }}</h5>
                                   </a>
-                                  <p class="card-text">$ {{ item.price }}</p>
+                                  <p class="card-text"><b>$ {{ item.price }} MXN</b></p>
+                                  <p class="card-text">{{ item.description }}</p>
                               </div>
-                              <div class="col-2">
+                              <div class="col-2 cart">
                                   <a href="#" class="btn btn-dark"><i class="fa fa-shopping-cart"></i>   <i class="fa fa-plus"></i></a>
                               </div>
                           </div>

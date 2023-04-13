@@ -139,6 +139,7 @@ def edit_product(product_id):
                         elif supply['id'] in sameSupplies and supply['id'] in newSupplies:
                             obj = ProductSupplies.query.where(supply_id=supply['id'], product_id=product.id)
                             obj.quantity = supply['amount']
+                            
                         if supply['id'] in deleteSupplies:
                             obj = ProductSupplies.query.where(supply_id=supply['id'], product_id=product.id)
                             db.session.delete(obj)
@@ -184,10 +185,14 @@ def productInfo(product_id):
 @product.route('/products/search', methods=["POST", "GET"])
 @login_required
 def search():
-    search="%{}%".format(request.form.get('search'))
-    products = Product.query.filter(Product.name.like(search)).all()
+    word = request.form.get('search')
+    if(word != None and word !=''):
+        search="%{}%".format(word)
+        products = Product.query.filter(Product.name.like(search)).all()
 
-    return render_template('search.html', title='Results of "'+search.replace('%', '')+'"', products=products)
+        return render_template('search.html', title='Results of "'+word+'"', products=products)
+    
+    return render_template('search.html', title='No results')
 
 @product.route('/product-details/<int:product_id>', methods=["POST", "GET"])
 @login_required

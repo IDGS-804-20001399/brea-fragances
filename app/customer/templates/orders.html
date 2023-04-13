@@ -8,15 +8,16 @@
         background-color: #222222;
     }
 </style>
+<div class="contaner"style="margin-top: 7%; margin-bottom: 5%; max-width: 75%; margin-left:auto; margin-right:auto; ">
 
-<h1 class="display-5 fw-bold text-center" style="color: whitesmoke;">{{ title }}</h1>
-
-<table class="table">
-    <thead>
-    <tr class="table-secondary">
-        <th scope="col">ID</th>
-        <th scope="col">Date</th>
-        <th scope="col">Quantity of Products</th>
+    <h1 class="display-5 fw-bold text-center" style="margin-bottom: 5%; color: whitesmoke;">{{ title }}</h1>
+    
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-secondary">
+                <th scope="col">ID</th>
+                <th scope="col">Date</th>
+                <th scope="col">Quantity of Products</th>
         <th scope="col">Payment Method</th>
         <th scope="col">Total</th>
         <th scope="col">Options</th>
@@ -47,4 +48,5 @@
     </tbody>
 </table>
 
+</div>
 {% endblock body %}
