@@ -40,63 +40,34 @@
       </tr>
     </thead>
     <tbody>
-      {% for supply in allSupplies %}
-      {% if supply.id in ids %}
+      {% for supply in supplies %}
       <tr class="table-secondary">
-        <td>{{ supply.name }}</td>
-        <td>{{ supply.cost }}</td>
-        <td>{{ supply.buy_unit }}</td>
-        <td>{{ supply.use_unit }}</td>
-        <td>{{ supply.equivalence }}</td>
+        <td>{{ supply['name'] }}</td>
+        <td>{{ supply['cost'] }}</td>
+        <td>{{ supply['buy_unit'] }}</td>
+        <td>{{ supply['use_unit'] }}</td>
+        <td>{{ supply['equivalence'] }}</td>
         <td><input type="number"
                  min="1"
-                 data-id="{{supply.id}}"
+                 data-id="{{supply['id']}}"
                  placeholder="1 is the minimum"
                  name="supplyAmount"
-                 id="amount{{supply.id}}"
-                 value="{{ quantities[loop.index-1] }}"></td>
-        <input type="hidden"
+                 value="{{supply['quantity']}}"
+                 id="amount{{supply['id']}}"></td>
+        <!-- <input type="hidden"
                value="{{supply.id}}"
-               name="supply_id">
+               name="supply_id"> -->
         <td>
           <div class="form-check form-switch">
             <input class="form-check-input"
                    type="checkbox"
                    name="supplyCheck"
-                   data-id="{{supply.id}}"
-                   checked
-                   id="check{{supply.id}}">
+                   data-id="{{supply['id']}}"
+                   {{ supply["checked"] }}
+                   id="check{{supply['id']}}">
           </div>
         </td>
       </tr>
-        {% else %}
-        <tr class="table-secondary">
-          <td>{{ supply.name }}</td>
-          <td>{{ supply.cost }}</td>
-          <td>{{ supply.buy_unit }}</td>
-          <td>{{ supply.use_unit }}</td>
-          <td>{{ supply.equivalence }}</td>
-          <td><input type="number"
-                   min="1"
-                   data-id="{{supply.id}}"
-                   placeholder="1 is the minimum"
-                   name="supplyAmount"
-                   id="amount{{supply.id}}"></td>
-          <input type="hidden"
-                 value="{{supply.id}}"
-                 name="supply_id">
-          <td>
-            <div class="form-check form-switch">
-              <input class="form-check-input"
-                     type="checkbox"
-                     name="supplyCheck"
-                     data-id="{{supply.id}}"
-                     disabled
-                     id="check{{supply.id}}">
-            </div>
-          </td>
-        </tr>
-      {% endif %}
       {% endfor %}
     </tbody>
   </table>
@@ -110,6 +81,9 @@
 {% block scripts %}
 {{ super() }}
 <script>
+  document.querySelectorAll('input[type=checkbox][name=supplyCheck]:not(:checked)').forEach(i => {
+    i.setAttribute('disabled', '');
+  });
   const form = document.getElementById('addForm');
   const suppliesInput = document.getElementById('supplies');
   form.addEventListener('submit', (e) => {
@@ -122,7 +96,7 @@
     });
     const suppliesJson = JSON.stringify(supplies);
     suppliesInput.value = suppliesJson;
-    form.submit(); 
+    form.submit();
   });
   document.querySelectorAll('input[name=supplyAmount]').forEach(i => {
     i.addEventListener('input', (e) => {

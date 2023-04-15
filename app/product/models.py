@@ -1,5 +1,10 @@
 from app import db
 
+#admininistracion usuarios roles
+#datos sensibles protegidos
+# Trazabilidad cambios bases de datos, compra, pedidos
+# cuando quien
+# usuarios con los minimos privilegios en la bd y en la app
 class ProductSupplies(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
