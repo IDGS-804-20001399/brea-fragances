@@ -35,5 +35,5 @@ def customers():
 @roles_required('admin')
 def customerDetails(customer_id):
     # NECESITO DATOS DE LA ORDER Y LOS PRODUCTOS DE LA MISMA
-    orderDetails = OrderDetails.query.filter(order_id=customer_id).all()
-    return render_template('ordersDetails.html', title='Order details', orderDetails=orderDetails)
+    order = Order.query.filter_by(user_id=customer_id).first()
+    return render_template('ordersDetails.html', title='Order details', order=order)
