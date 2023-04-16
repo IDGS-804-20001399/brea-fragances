@@ -11,7 +11,8 @@
       style="max-width: 50%; margin: auto;">
     {{ form.hidden_tag() }}
     {{ render_field(form.name) }}
-    {{ render_field(form.contact) }}
+    {{ render_field(form.email) }}
+    {{ render_field(form.phone) }}
     {{ render_field(form.product) }}
     {{ form.submit(class="btn btn-warning") }}
 </form>

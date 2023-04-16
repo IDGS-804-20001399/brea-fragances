@@ -15,7 +15,7 @@ supplier = Blueprint('supplier', __name__,
 @roles_required('admin')
 def suppliers():
     suppliers = Supplier.query.all()
-    return render_template('suppliers.html', title='Supplies', suppliers=suppliers)
+    return render_template('suppliers.html', title='Suppliers', suppliers=suppliers)
 
 
 @supplier.route('/add-supplier', methods=["POST", "GET"])

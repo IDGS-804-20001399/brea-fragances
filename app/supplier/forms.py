@@ -6,6 +6,7 @@ from app import supply_pics
 
 class SupplierForm(FlaskForm):
     name=StringField('Name', [DataRequired(message='Must not be empty')])
-    contact=StringField('Contact Info (Email/Phone)', [DataRequired(message='Must not be empty')])
+    email=StringField('Email', [DataRequired(message='Must not be empty')])
+    phone=StringField('Phone', [DataRequired(message='Must not be empty')])
     product=StringField('Product', [DataRequired(message='Must not be empty')])
     submit = SubmitField('Save supplier')

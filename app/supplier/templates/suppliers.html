@@ -4,15 +4,21 @@
 <div class="container">
 
     <a class="btn btn-primary mb-3"
-    href="{{ url_for('supplier.add_supplier') }}">
-    <i class="bi bi-plus-circle-fill"></i>
+    href="{{ url_for('supply.add_supply') }}">
+    <i class="bi bi-plus-circle"></i>
     Add Supply
+</a>
+    <a class="btn btn-primary mb-3" style="margin-left: 10px;"
+    href="{{ url_for('supplier.add_supplier') }}">
+    <i class="bi bi-plus-circle"></i>
+    Add Supplier
 </a>
 <table class="table table-hover">
     <thead>
         <tr class="table-secondary">
             <th scope="col">Name</th>
-            <th scope="col">Contact Info</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
             <th scope="col">Product</th>
             <th scope="col">Actions</th>
         </tr>
@@ -21,22 +27,24 @@
         {% for supplier in suppliers %}
         <tr class="table-secondary">
             <td>{{ supplier.name }}</td>
-            <td>{{ supplier.contact }}</td>
+            <td>{{ supplier.email }}</td>
+            <td>{{ supplier.phone }}</td>
             <td>{{ supplier.product }}</td>
             <td>
-                <a class="btn btn-warning btn-sm mb-2"
+                <div class="d-flex flex-nowrap">
+                    <a class="btn btn-warning btn-sm mb-2" style="margin-right: 10px;"
                    href="{{ url_for('supplier.edit_supplier', supplier_id=supplier.id) }}">
                     <i class="bi bi-pencil-square"></i>
-                    Edit
                 </a>
-                <form class="delete"
+                <form class="delete" style="margin-right: 10px;"
                       action="{{ url_for('supplier.delete_supplier', supplier_id=supplier.id) }}"
                       method="post">
                     <button class="btn btn-danger btn-sm">
                         <i class="bi bi-trash-fill"></i>
-                        Delete
                     </button>
                 </form>
+
+                </div>
             </td>
         </tr>
         {% endfor %}

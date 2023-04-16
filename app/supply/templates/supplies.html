@@ -5,13 +5,13 @@
 
     <a class="btn btn-primary mb-3"
     href="{{ url_for('supply.add_supply') }}">
-    <i class="bi bi-plus-circle-fill"></i>
+    <i class="bi bi-plus-circle"></i>
     Add Supply
 </a>
-    <a class="btn btn-primary mb-3"
+    <a class="btn btn-primary mb-3" style="margin-left: 10px;"
     href="{{ url_for('supplier.add_supplier') }}">
-    <i class="bi bi-user"></i>
-    Suppliers
+    <i class="bi bi-plus-circle"></i>
+    Add Supplier
 </a>
 <table class="table table-hover">
     <thead>
@@ -38,19 +38,20 @@
                      src="{{ supply.image_url }}">
             </td>
             <td>
-                <a class="btn btn-warning btn-sm mb-2"
-                   href="{{ url_for('supply.edit_supply', supply_id=supply.id) }}">
+                <div class="d-flex flex-nowrap">
+
+                    <a class="btn btn-warning btn-sm mb-2" style="margin-right: 10px;"
+                    href="{{ url_for('supply.edit_supply', supply_id=supply.id) }}">
                     <i class="bi bi-pencil-square"></i>
-                    Edit
                 </a>
-                <form class="delete"
+                <form class="delete" style="margin-right: 10px;"
                       action="{{ url_for('supply.delete_supply', supply_id=supply.id) }}"
                       method="post">
-                    <button class="btn btn-danger btn-sm">
-                        <i class="bi bi-trash-fill"></i>
-                        Delete
-                    </button>
-                </form>
+                      <button class="btn btn-danger btn-sm">
+                          <i class="bi bi-trash-fill"></i>
+                        </button>
+                    </form>
+                </div>
             </td>
         </tr>
         {% endfor %}

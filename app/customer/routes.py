@@ -45,12 +45,26 @@ def myOrders():
 @roles_required('customer')
 def cart():
     cart = request.cookies.get('cartItems')
-    cartItems = json.loads(cart)
     products = []
-    for item in cartItems:
-        print(item['item'])
-        products.append(Product.query.filter_by(id=item['item']).first())
+    if cart is not None:
+        cartItems = json.loads(cart)
+        for item in cartItems:
+            products.append(Product.query.filter_by(id=item['item']).first())
+
     return render_template('cart.html', title='My cart', products=products)
+
+# @customer.route('/checkout', methods=["POST", "GET"])
+# @login_required
+# @roles_required('customer')
+# def checkout():
+    # cart = request.cookies.get('cartItems')
+    # products = []
+    # if cart is not None:
+    #     cartItems = json.loads(cart)
+    #     for item in cartItems:
+    #         products.append(Product.query.filter_by(id=item['item']).first())
+
+    # return render_template('cart.html', title='My cart', products=products)
 
 @customer.route('/order-details', methods=["POST", "GET"])
 @login_required

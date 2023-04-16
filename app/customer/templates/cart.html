@@ -31,7 +31,7 @@
       
                       
       
-                      {% if products %}
+                      {% if products|count != 0 %}
                       {% for p in products %}
                       <div class="card mb-3 animate__animated animate__lightSpeedInLeft">
                         <div class="card-body">
@@ -60,6 +60,14 @@
                       </div>
                         
                       {% endfor %}
+                      {% else %}
+                      <div class="row">
+                        <div class="h-100 p-5 text-white bg-dark rounded-3">
+                            <h2>There is nothing here :(</h2>
+                            <p>You can see all our products by clicking the button down below.</p>
+                            <a class="btn btn-outline-light" href="{{url_for('home.products')}}" type="button">Go to Products</a>
+                          </div>
+                    </div>
                         
                       {% endif %}
       

@@ -3,7 +3,7 @@
 {% block body %}
 <a class="btn btn-primary mb-3"
    href="{{ url_for('supply.add_supply') }}">
-    <i class="bi bi-plus-circle-fill"></i>
+    <i class="bi bi-plus-circle"></i>
     Add Supply
 </a>
 <table class="table table-hover">
@@ -32,17 +32,18 @@
                      src="{{ supply['image_url'] }}">
             </td>
             <td>
-                <a class="btn btn-warning btn-sm mb-2">
-                    <i class="bi bi-pencil-square"></i>
-                    Edit
+                <div class="d-flex flex-nowrap">
+
+                    <a class="btn btn-warning btn-sm mb-2" style="margin-right: 10px;">
+                        <i class="bi bi-pencil-square"></i>
                 </a>
-                <form class="delete"
+                <form class="delete" style="margin-right: 10px;"
                       method="post">
                     <button class="btn btn-danger btn-sm">
                         <i class="bi bi-trash-fill"></i>
-                        Delete
                     </button>
                 </form>
+            </div>
             </td>
         </tr>
         {% endfor %}

@@ -16,7 +16,7 @@
         <thead>
             <tr class="table-secondary">
                 <th scope="col">ID</th>
-                <th scope="col">Date</th>
+                <td>Date</td>
         <th scope="col">Payment Method</th>
         <th scope="col">Delivery cost</th>
         <th scope="col">Total</th>
@@ -36,7 +36,12 @@
                 <td>{{ order.total }}</td>
                 <td>{{ order.delivery_method }}</td>
                 <td>{{ order.status }}</td>
-                <td><a href="/customer/order-details/id" class="btn btn-outline-dark"><i class="fa fa-eye"></i> See details</a></td>
+                <td>
+                    <form action="/order/admin-order-details" method="POST" >
+                        <input type="hidden" value="{{ order.id }}" name="order_id" id="order_id">
+                        <button type="submit" class="btn btn-outline-dark"><i class="fa fa-eye"></i> See details</button>
+                    </form>
+                </td>
             </tr>
         {% endfor %}
     {% else %}
