@@ -20,12 +20,6 @@
   }
 </style>
 
-<script>
-  function add(button) {
-      alert('added to cart')
-  }
-</script>
-
 <div class="container" style="max-width: 100%; background-color: black;">
   <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" style="max-width: 50%; margin-inline: auto;">
     <div class="carousel-indicators">
@@ -73,7 +67,10 @@
                                   <p class="card-text">{{ item.description }}</p>
                               </div>
                               <div class="col-2 cart">
-                                <button id="{{ item.id }}" onclick="add(this)" class="btn btn-dark"><i class="fa fa-shopping-cart"></i>   <i class="fa fa-plus"></i></button>
+                                <form action="/add" method="post">
+                                  <input type="hidden" id="product_id" name="product_id" value="{{ item.id }}">
+                                  <button type="submit" class="btn btn-dark"><i class="fa fa-shopping-cart"></i>   <i class="fa fa-plus"></i></button>
+                                </form>
                               </div>
                           </div>
                       </div>
