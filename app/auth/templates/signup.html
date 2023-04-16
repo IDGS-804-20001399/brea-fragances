@@ -7,26 +7,34 @@
 {% block body %}
 <style>
     body{
-        background-color: #222222;
+        background-image: url("/static/images/bf-logo.svg");
+        background-color: white;
+        background-size: 25%;
     }
 </style>
 
-<h1 class="display-5 fw-bold text-center" style="color: whitesmoke;">{{ title }}</h1>
+<div class="container" style="margin-top: 7%; margin-bottom: 5%; max-width: 50%;">
 
-{{ display_alerts() }}
-
-<div class="container" style="margin-bottom: 10%;">
-    <form action="/signup" method="POST" class="row g-3" style="max-width: 90%; margin: auto;">
-        {{ form.hidden_tag() }}
-        {{ render_field(form.names) }}
-        {{ render_field(form.lastnames) }}
-        {{ render_field(form.address) }}
-        {{ render_field(form.phone) }}
-        {{ render_field(form.email) }}
-        {{ render_field(form.password) }}
-        {{ render_field(form.confirm_password) }}
-        {{ form.submit(class="btn btn-warning") }}
-    </form>
+    
+    {{ display_alerts() }}
+    
+    <div class="container shadow-lg animate__animated animate__pulse" style="margin-top: 5%; 
+    margin-bottom: 10%; 
+    padding: 50px;
+    background-color: white; ">
+    <h1 class="display-5 fw-bold text-center animate__animated animate__lightSpeedInRight" >{{ title }}</h1>
+        <form action="/signup" method="POST" class="row g-3" style="max-width: 90%; margin: auto;">
+            {{ form.hidden_tag() }}
+            {{ render_field(form.names) }}
+            {{ render_field(form.lastnames) }}
+            {{ render_field(form.address) }}
+            {{ render_field(form.phone) }}
+            {{ render_field(form.email) }}
+            {{ render_field(form.password) }}
+            {{ render_field(form.confirm_password) }}
+            {{ form.submit(class="btn btn-warning") }}
+        </form>
+    </div>
 </div>
 
 

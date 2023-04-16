@@ -9,9 +9,11 @@
     }
 </style>
 
-<h1 class="display-5 fw-bold text-center" style="color: whitesmoke;">{{ title }}</h1>
+<div class="container" style="margin: 7% auto 7% auto; max-width: 75%;">
 
-<table class="table">
+    <h1 class="display-5 fw-bold text-center" style="color: whitesmoke;">{{ title }}</h1>
+    
+    <table class="table table-hover">
     <thead>
     <tr class="table-secondary">
         <th scope="col">ID</th>
@@ -44,7 +46,8 @@
         <td><a href="" class="btn btn-outline-dark">--</a></td>
     </tr>
     {% endif %}
-    </tbody>
+</tbody>
 </table>
+</div>
 
 {% endblock body %}

@@ -17,27 +17,33 @@
             <tr class="table-secondary">
                 <th scope="col">ID</th>
                 <th scope="col">Date</th>
-                <th scope="col">Quantity of Products</th>
         <th scope="col">Payment Method</th>
+        <th scope="col">Delivery cost</th>
         <th scope="col">Total</th>
+        <th scope="col">Delivery Method</th>
+        <th scope="col">Status</th>
         <th scope="col">Options</th>
     </tr>
     </thead>
     <tbody>
-    {% if customers %}
-        {% for item in customers %}
+    {% if orders %}
+        {% for order in orders %}
             <tr class="table-secondary">
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
+                <th scope="row">{{ order.id }}</th>
+                <td>{{ order.date }}</td>
+                <td>{{ order.payment }}</td>
+                <td>{{ order.delivery_fee }}</td>
+                <td>{{ order.total }}</td>
+                <td>{{ order.delivery_method }}</td>
+                <td>{{ order.status }}</td>
                 <td><a href="/customer/order-details/id" class="btn btn-outline-dark"><i class="fa fa-eye"></i> See details</a></td>
             </tr>
         {% endfor %}
     {% else %}
     <tr class="table-secondary">
         <th scope="row">--</th>
+        <td>--</td>
+        <td>--</td>
         <td>--</td>
         <td>--</td>
         <td>--</td>
