@@ -1,6 +1,26 @@
 {% extends "base.html" %}
 
 {% block body %}
+
+<style>
+
+    .cart :hover{
+      animation: tada; 
+      animation-duration: 0.5s; 
+    }
+  
+    .product-link:hover{
+      animation: pulse;
+      animation-duration: 1s; 
+    }
+    
+    .product-image:hover{
+      transform: scale(1.5);
+      animation: fadeIn;
+      animation-duration: 1s; 
+    }
+  </style>
+
 <div class="container m-8 py-5" style="margin-top: 4%; margin-bottom: 4%;">
     <h1 class="display-5 fw-bold text-center" >{{ title }}</h1>
         {% if products %}
@@ -21,7 +41,7 @@
                                   <p class="card-text">{{ item.description }}</p>
                               </div>
                               <div class="col-2 cart">
-                                  <a href="#" class="btn btn-dark"><i class="fa fa-shopping-cart"></i>   <i class="fa fa-plus"></i></a>
+                                  <button id="{{ item.id }}" onclick="add(this)" class="btn btn-dark"><i class="fa fa-shopping-cart"></i>   <i class="fa fa-plus"></i></button>
                               </div>
                           </div>
                       </div>
@@ -29,47 +49,13 @@
                 </div>
             {% endfor %}
         </div>
-        {% else %}
-        
-        <div class="row">
-            <div class="col-sm-6 mb-3 mb-sm-0 my-3">
-              <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-3">
-                            <img class="img-fluid img-thumbnail"  alt="..." src="https://imgs.search.brave.com/0ucUHtwhgmIXuKUxOLQTlWEfymrtGT1t_N4_5GyJq8c/rs:fit:1200:1200:1/g:ce/aHR0cDovL3BuZ2lt/Zy5jb20vdXBsb2Fk/cy9wZXJmdW1lL3Bl/cmZ1bWVfUE5HMTAy/NzgucG5n">
-                        </div>
-                        <div class="col">
-                            <h5 class="card-title">Name</h5>
-                            <p class="card-text">$ Price</p>
-                        </div>
-                        <div class="col-2">
-                            <a href="#" class="btn btn-dark"><i class="fa fa-shopping-cart"></i>   <i class="fa fa-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 mb-3 mb-sm-0 my-3">
-              <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-3">
-                            <img class="img-fluid img-thumbnail"  alt="..." src="https://imgs.search.brave.com/0ucUHtwhgmIXuKUxOLQTlWEfymrtGT1t_N4_5GyJq8c/rs:fit:1200:1200:1/g:ce/aHR0cDovL3BuZ2lt/Zy5jb20vdXBsb2Fk/cy9wZXJmdW1lL3Bl/cmZ1bWVfUE5HMTAy/NzgucG5n">
-                        </div>
-                        <div class="col">
-                            <h5 class="card-title">Name</h5>
-                            <p class="card-text">$ Price</p>
-                        </div>
-                        <div class="col-2">
-                            <a href="#" class="btn btn-dark"><i class="fa fa-shopping-cart"></i>   <i class="fa fa-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </div>
-        </div>
         {% endif %}
 </div>
+
+<script>
+    function add(button) {
+        alert('added to cart')
+    }
+</script>
 
 {% endblock body %}

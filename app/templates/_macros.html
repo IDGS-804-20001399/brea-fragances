@@ -140,11 +140,11 @@
             </li>
             <li>
               <a class="dropdown-item"
-              href="{{ url_for('customer.customersOrders') }}">Orders</a>
+              href="{{ url_for('order.orders') }}">Orders</a>
             </li>
             <li>
               <a class="dropdown-item"
-              href="{{ url_for('customer.customers') }}">Customers</a>
+              href="{{ url_for('order.customers') }}">Customers</a>
             </li>
             <li>
               <a class="dropdown-item"
@@ -155,8 +155,6 @@
             </li>
             <li><a class="dropdown-item"
               href="{{ url_for('auth.logout') }}">Logout</a></li>
-            <!-- <li><a class="dropdown-item"
-                 href="/admin/add-product">Add Product</a></li> -->
           </ul>
         </li>
         {% endif %}
@@ -169,7 +167,7 @@
         {% if current_user.is_authenticated and current_user.has_role('customer')%}
         <a style="margin-right: 10px; max-height: 38px; min-width: 50px;"
            class="btn btn-outline-dark btn-sm "
-           href="/cart"
+           href="{{ url_for('customer.cart') }}"
            role="button"><i class="fa fa-shopping-cart"></i></a>
         {% endif %}
         {% if not current_user.is_authenticated %}

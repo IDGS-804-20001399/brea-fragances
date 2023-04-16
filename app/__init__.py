@@ -24,12 +24,16 @@ def create_app():
     from app.supply.routes import supply
     from app.customer.routes import customer
     from app.home.routes import home
+    from app.supplier.routes import supplier
+    from app.order.routes import order
 
     app.register_blueprint(home)
     app.register_blueprint(auth)
     app.register_blueprint(product)
     app.register_blueprint(supply)
     app.register_blueprint(customer)
+    app.register_blueprint(supplier)
+    app.register_blueprint(order)
 
     security.init_app(app, user_datastore)
     with app.app_context():
@@ -41,8 +45,10 @@ def create_db():
     # db.drop_all()
     # Creates the database
     db.create_all()
-    # Creates the Roles "admin" and "customer" -- unless they already exist
+    # Creates the Roles "admin", "seller", "stocker", "customer" -- unless they already exist
     user_datastore.find_or_create_role(name='admin', description='Administrator')
+    user_datastore.find_or_create_role(name='seller', description='Seller')
+    user_datastore.find_or_create_role(name='stocker', description='Stocker')
     user_datastore.find_or_create_role(name='customer', description='Customer')
 
     # Encrypts the password
@@ -51,6 +57,14 @@ def create_db():
     if not user_datastore.get_user('admin@gmail.com'):
         user_datastore.create_user(email='admin@gmail.com', password=encrypted_password)
     db.session.commit()
+    # Creates the stocker user if it doesn't exits yet
+    if not user_datastore.get_user('stocker@gmail.com'):
+        user_datastore.create_user(email='stocker@gmail.com', password=encrypted_password)
+    db.session.commit()
+    # Creates the seller user if it doesn't exits yet
+    if not user_datastore.get_user('seller@gmail.com'):
+        user_datastore.create_user(email='seller@gmail.com', password=encrypted_password)
+    db.session.commit()
     # Creates the customer user if it doesn't exits yet
     if not user_datastore.get_user('customer@gmail.com'):
         user_datastore.create_user(email='customer@gmail.com', password=encrypted_password)
@@ -58,6 +72,10 @@ def create_db():
 
     # Gives the "admin" role to the user admin if it doesn't have it yet
     user_datastore.add_role_to_user('admin@gmail.com', 'admin')
+    # Gives the "seller" role to the user seller if it doesn't have it yet
+    user_datastore.add_role_to_user('seller@gmail.com', 'seller')
+    # Gives the "stocker" role to the user stocker if it doesn't have it yet
+    user_datastore.add_role_to_user('stocker@gmail.com', 'stocker')
     # Gives the "customer" role to the user admin if it doesn't have it yet
     user_datastore.add_role_to_user('customer@gmail.com', 'customer')
     db.session.commit()

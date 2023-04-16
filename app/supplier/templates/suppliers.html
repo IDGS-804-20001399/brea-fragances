@@ -4,47 +4,33 @@
 <div class="container">
 
     <a class="btn btn-primary mb-3"
-    href="{{ url_for('supply.add_supply') }}">
+    href="{{ url_for('supplier.add_supplier') }}">
     <i class="bi bi-plus-circle-fill"></i>
     Add Supply
-</a>
-    <a class="btn btn-primary mb-3"
-    href="{{ url_for('supplier.add_supplier') }}">
-    <i class="bi bi-user"></i>
-    Suppliers
 </a>
 <table class="table table-hover">
     <thead>
         <tr class="table-secondary">
             <th scope="col">Name</th>
-            <th scope="col">Cost</th>
-            <th scope="col">Buy unit</th>
-            <th scope="col">Use unit</th>
-            <th scope="col">Equivalence</th>
-            <th scope="col">Image</th>
+            <th scope="col">Contact Info</th>
+            <th scope="col">Product</th>
             <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
-        {% for supply in supplies %}
+        {% for supplier in suppliers %}
         <tr class="table-secondary">
-            <td>{{ supply.name }}</td>
-            <td>{{ supply.cost }}</td>
-            <td>{{ supply.buy_unit }}</td>
-            <td>{{ supply.use_unit }}</td>
-            <td>{{ supply.equivalence }}</td>
-            <td>
-                <img height="100px"
-                     src="{{ supply.image_url }}">
-            </td>
+            <td>{{ supplier.name }}</td>
+            <td>{{ supplier.contact }}</td>
+            <td>{{ supplier.product }}</td>
             <td>
                 <a class="btn btn-warning btn-sm mb-2"
-                   href="{{ url_for('supply.edit_supply', supply_id=supply.id) }}">
+                   href="{{ url_for('supplier.edit_supplier', supplier_id=supplier.id) }}">
                     <i class="bi bi-pencil-square"></i>
                     Edit
                 </a>
                 <form class="delete"
-                      action="{{ url_for('supply.delete_supply', supply_id=supply.id) }}"
+                      action="{{ url_for('supplier.delete_supplier', supplier_id=supplier.id) }}"
                       method="post">
                     <button class="btn btn-danger btn-sm">
                         <i class="bi bi-trash-fill"></i>

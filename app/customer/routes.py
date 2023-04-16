@@ -2,6 +2,7 @@ from flask import render_template, url_for, flash, redirect, request, Blueprint
 from flask_security import login_required, current_user, roles_required
 from app.customer.forms import UserForm
 from app.customer.models import Customer
+from app.product.models import Product
 from app import db
 
 customer = Blueprint('customer', __name__,
@@ -35,25 +36,20 @@ def index():
 @login_required
 @roles_required('customer')
 def myOrders():
-    return render_template('orders.html', title='My Orders')
+    return render_template('myOrders.html', title='My Orders')
+
+@customer.route('/cart', methods=["POST", "GET"])
+@login_required
+@roles_required('customer')
+def cart():
+    
+    return render_template('cart.html', title='My cart')
 
 @customer.route('/order-details', methods=["POST", "GET"])
 @login_required
 @roles_required('customer')
 def details():
-    return render_template('details.html', title='Order Details')
-
-@customer.route('/customers', methods=["POST", "GET"])
-@login_required
-@roles_required('admin')
-def customers():
-    return render_template('customers.html', title='Customers list')
-
-@customer.route('/customers-orders', methods=["POST", "GET"])
-@login_required
-@roles_required('admin')
-def customersOrders():
-    return render_template('customersOrders.html', title='Customers orders')
+    return render_template('orderDetails.html', title='Order Details')
 
 @customer.route('/statistics', methods=["POST", "GET"])
 @login_required
