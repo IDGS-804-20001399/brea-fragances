@@ -1,12 +1,13 @@
 {% extends "adminBase.html" %}
 
 {% block body %}
-<a class="btn btn-primary mb-3"
+<div class="container">
+    <a class="btn btn-primary mb-3"
    href="{{ url_for('product.add_product') }}">
     <i class="bi bi-plus-circle-fill"></i>
     Add product
 </a>
-<table class="table">
+<table class="table table-hover">
     <thead>
         <tr class="table-secondary">
             <th scope="col">Name</th>
@@ -35,18 +36,23 @@
                     {% endfor %}
                 </ul>
             </td>
-            <td>
-                <a class="btn btn-warning btn-sm mb-2"
+            <td >
+                <a class="btn btn-primary btn-sm mb-2" style="display: inline; margin-right: 15px;"
+                href="{{ url_for('product.details', product_id=product.id) }}">
+                    <i class="bi bi-eye"></i>
+                    
+                </a>
+                <a class="btn btn-warning btn-sm mb-2" style="display: inline; margin-right: 15px;"
                    href="{{ url_for('product.edit_product', product_id=product.id) }}">
                     <i class="bi bi-pencil-square"></i>
-                    Edit
+                    
                 </a>
-                <form class="delete"
+                <form class="delete" style="display: inline; margin-right: 15px;"
                       action="{{ url_for('product.delete_product', product_id=product.id) }}"
                       method="post">
                     <button class="btn btn-danger btn-sm">
                         <i class="bi bi-trash-fill"></i>
-                        Delete
+                        
                     </button>
                 </form>
             </td>
@@ -54,5 +60,6 @@
         {% endfor %}
     </tbody>
 </table>
+</div>
 
 {% endblock body %}

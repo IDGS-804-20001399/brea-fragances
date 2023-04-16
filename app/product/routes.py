@@ -165,14 +165,17 @@ def search():
 @roles_required('admin')
 def details(product_id):
     product = Product.query.get_or_404(product_id)
-    productSupplies = ProductSupplies.query.filter_by(product_id=product.id).all()
-    supplies = []
-    quantities = []
-    for item in productSupplies:
-        supplies.append(Supply.query.filter_by(id=item.supply_id).first())
-        quantities.append(item.quantity)
-    return render_template('productDetails.html', title='Details', 
-                           product=product, supplies=supplies, quantities=quantities, productSupplies=productSupplies)
+    return render_template('productDetails.html', 
+                           title='Product Details', 
+                           product=product)
+
+
+@product.route('/product-make/<int:product_id>', methods=["POST", "GET"])
+@login_required
+@roles_required('admin')
+def make(product_id):
+    return render_template('productDetails.html', 
+                           title='Make product')
                         
 
 @product.route('/product-info/<int:product_id>', methods=["POST", "GET"])

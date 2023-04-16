@@ -14,6 +14,7 @@
             <th scope="col">Name</th>
             <th scope="col">Price</th>
             <th scope="col">Image</th>
+            <th scope="col">Production cost</th>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +25,7 @@
                 <img height="100px"
                      src="{{ product.image_url }}">
             </td>
+            <td>{{ product.production_cost | moneyFormat }}</td>
         </tr>
     </tbody>
 </table>
@@ -38,28 +40,29 @@
             <th scope="col">Use Unit</th>
             <th scope="col">Equivalence</th>
             <th scope="col">Quantity</th>
+            <th scope="col">Quantity cost</th>
             <th scope="col">Image</th>
         </tr>
     </thead>
     <tbody>
-        {% if supplies %}
-        {% for supply in supplies %}
+        {% for productSupply in product.productSupplies %}
             
         <tr class="table-secondary">
-            <td>{{ supply.name }}</td>
-            <td>{{ supply.cost }}</td>
-            <td>{{ supply.buy_unit }}</td>
-            <td>{{ supply.use_unit }}</td>
-            <td>{{ supply.equivalence }}</td>
-            <td>{{ quantities[loop.index-1] }}</td>
+            <td>{{ productSupply.supply.name }}</td>
+            <td>{{ productSupply.supply.cost }}</td>
+            <td>{{ productSupply.supply.buy_unit }}</td>
+            <td>{{ productSupply.supply.use_unit }}</td>
+            <td>{{ productSupply.supply.equivalence }}</td>
+            <td>{{ productSupply.quantity }}
+                {{ productSupply.supply.use_unit }}
+            </td>
+            <td>{{ productSupply.quantity_cost | moneyFormat }}</td>
             <td>
                 <img height="100px"
-                src="{{ supply.image_url }}">
+                src="{{ productSupply.supply.image_url }}">
             </td>
         </tr>
-        
         {% endfor %}
-        {% endif %}
     </tbody>
 </table>
 </div>
