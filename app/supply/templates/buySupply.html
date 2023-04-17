@@ -11,12 +11,8 @@
       enctype="multipart/form-data"
       style="max-width: 50%; margin: auto;">
     {{ form.hidden_tag() }}
-    {{ render_field(form.name) }}
-    {{ render_field(form.cost) }}
-    {{ render_field(form.buy_unit) }}
-    {{ render_field(form.use_unit) }}
-    {{ render_field(form.equivalence) }}
-    {{ render_image_field(form.image, default_image) }}
+    {{ render_field(form.quantity) }}
+    {{ render_field(form.expiration_date) }}
     {{ form.submit(class="btn btn-warning") }}
 </form>
 

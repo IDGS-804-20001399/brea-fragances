@@ -2,9 +2,10 @@ import os
 from flask import (render_template, url_for, flash, redirect, 
                     request, Blueprint)
 from flask_security import login_required, roles_required
-from app.supply.forms import SupplyForm
-from app.supply.models import Supply
+from app.supply.forms import SupplyForm, BuySupplyForm
+from app.supply.models import Supply, SupplyBuys
 from app import supply_pics, db
+from datetime import date
 
 supply = Blueprint('supply', __name__,
                  template_folder='templates',
@@ -29,6 +30,38 @@ def inventory():
 # inner join supply_inventory i on s.id = i.supply_id 
 # group by s.id;
     pass
+
+
+@supply.route('/buy-supply/<int:supply_id>', methods=["POST", "GET"])
+@login_required
+@roles_required('admin')
+def buy_supply(supply_id):
+    form = BuySupplyForm()
+    supply = Supply.query.get_or_404(supply_id)
+    if form.validate_on_submit():
+        available_use_quantity = form.quantity.data * supply.equivalence
+        buy = SupplyBuys(expiration_date=form.expiration_date.data,
+                         quantity=form.quantity.data,
+                         available_use_quantity=available_use_quantity,
+                         unit_cost=supply.cost,
+                         supply_id=supply_id)
+        db.session.add(buy)
+        db.session.commit()
+        flash('Supply bought successfully', 'success')
+        return redirect(url_for("supply.details", supply_id=supply_id))
+
+    return render_template('buySupply.html',
+                           title='Buy supply',
+                           form=form)
+
+@supply.route('/supply-details/<int:supply_id>', methods=["POST", "GET"])
+@login_required
+@roles_required('admin')
+def details(supply_id):
+    supply = Supply.query.get_or_404(supply_id)
+    return render_template('supplyDetails.html', 
+                           title='Supply Details', 
+                           supply=supply,)
 
 
 @supply.route('/add-supply', methods=["POST", "GET"])

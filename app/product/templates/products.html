@@ -3,63 +3,65 @@
 {% block body %}
 <div class="container">
     <a class="btn btn-primary mb-3"
-   href="{{ url_for('product.add_product') }}">
-    <i class="bi bi-plus-circle-fill"></i>
-    Add product
-</a>
-<table class="table table-hover">
-    <thead>
-        <tr class="table-secondary">
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Image</th>
-            <th scope="col">Supplies</th>
-            <th scope="col">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for product in products %}
-        <tr class="table-secondary">
-            <td>{{ product.name }}</td>
-            <td>{{ product.price }}</td>
-            <td>
-                <img height="100px"
-                     src="{{ product.image_url }}">
-            </td>
-            <td>
-                <ul>
-                    {% for supply in product.productSupplies %}
+       href="{{ url_for('product.add_product') }}">
+        <i class="bi bi-plus-circle-fill"></i>
+        Add product
+    </a>
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-secondary">
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Image</th>
+                <th scope="col">Supplies</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr class="table-secondary">
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>
+                    <img height="100px"
+                         src="{{ product.image_url }}">
+                </td>
+                <td>
+                    <ul>
+                        {% for supply in product.productSupplies %}
                         <li>{{ supply.supply.name }}
                             {{ supply.quantity }}
                             {{ supply.supply.use_unit }}
                         </li>
-                    {% endfor %}
-                </ul>
-            </td>
-            <td >
-                <a class="btn btn-primary btn-sm mb-2" style="display: inline; margin-right: 15px;"
-                href="{{ url_for('product.details', product_id=product.id) }}">
-                    <i class="bi bi-eye"></i>
-                    
-                </a>
-                <a class="btn btn-warning btn-sm mb-2" style="display: inline; margin-right: 15px;"
-                   href="{{ url_for('product.edit_product', product_id=product.id) }}">
-                    <i class="bi bi-pencil-square"></i>
-                    
-                </a>
-                <form class="delete" style="display: inline; margin-right: 15px;"
-                      action="{{ url_for('product.delete_product', product_id=product.id) }}"
-                      method="post">
-                    <button class="btn btn-danger btn-sm">
-                        <i class="bi bi-trash-fill"></i>
-                        
-                    </button>
-                </form>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <a class="btn btn-primary btn-sm mb-2"
+                       style="display: inline; margin-right: 15px;"
+                       href="{{ url_for('product.details', product_id=product.id) }}">
+                        <i class="bi bi-eye"></i>
+                    </a>
+                    <a class="btn btn-warning btn-sm mb-2"
+                       style="display: inline; margin-right: 15px;"
+                       href="{{ url_for('product.edit_product', product_id=product.id) }}">
+                        <i class="bi bi-pencil-square"></i>
+
+                    </a>
+                    <form class="delete"
+                          style="display: inline; margin-right: 15px;"
+                          action="{{ url_for('product.delete_product', product_id=product.id) }}"
+                          method="post">
+                        <button class="btn btn-danger btn-sm">
+                            <i class="bi bi-trash-fill"></i>
+
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 
 {% endblock body %}

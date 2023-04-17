@@ -18,3 +18,4 @@ class BuySupplyForm(FlaskForm):
     expiration_date = DateField('Expiration date', [DataRequired('Must not be empty')])
     quantity = IntegerField('Quantity', [DataRequired('Must not be empty'),
                                          NumberRange(min=1, message='The value must be greater than 1.')])
+    submit = SubmitField('Buy supply')
