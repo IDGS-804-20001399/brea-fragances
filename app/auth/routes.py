@@ -67,7 +67,8 @@ def users():
 @roles_required( 'admin')
 def add_user():
     form = AdminForm()
-    return render_template('addUser.html', title='User', form=form)
+    roles = Role.query.all()
+    return render_template('addUser.html', title='User', roles=roles, form=form)
 
 @auth.route('/edit-user')
 @login_required
