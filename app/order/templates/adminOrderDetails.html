@@ -37,7 +37,6 @@
             <td>{{ order.total }}</td>
             <td>{{ order.delivery_method }}</td>
             <td>{{ order.status }}</td>
-            <td>{{ customer.names }}</td>
         </tr>
 {% endif %}
 </tbody>
@@ -55,24 +54,14 @@
     </tr>
     </thead>
     <tbody>
-    {% if orderDetails %}
-        {% for detail in orderDetails %}
+        {% for detail in order.details %}
         <tr class="table-secondary">
             <th scope="row">{{ detail.id }}</th>
-            <td>{{ detail.product_name }}</td>
+            <td>{{ detail.product.name }}</td>
             <td>{{ detail.quantity }}</td>
             <td>{{ detail.price }}</td>
         </tr>
         {% endfor %}
-    {% else %}
-    <tr class="table-secondary">
-        <th scope="row">--</th>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-    </tr>
-    {% endif %}
     </tbody>
 </table>
 </div>

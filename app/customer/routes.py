@@ -79,12 +79,9 @@ def validate():
     if request.method == 'POST':
         card_number = request.form['card_number']
     
-        # Validate the card number using the creditcard library
         if luhn.is_valid(card_number):
-            # Card number is valid, do something here
             flash("Card number is valid", 'success')
         else:
-            # Card number is invalid, display an error message
             flash("Card number is invalid", 'danger')
     return redirect(url_for('customer.cart'))
 

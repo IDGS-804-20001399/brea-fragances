@@ -1,10 +1,11 @@
 from flask import render_template, url_for, flash, redirect, request, Blueprint
-from app.auth.forms import LoginForm, RegistrationForm
-from app.auth.models import User
+from app.auth.forms import LoginForm, RegistrationForm, AdminForm
+from app.auth.models import User, Role
 from app.customer.models import Customer
 from flask_security.utils import encrypt_password, verify_password, login_user, logout_user
 from flask_security import login_required 
 from app import user_datastore, db
+from flask_security import login_required, roles_required
 
 auth = Blueprint('auth', __name__,
                  template_folder='templates')
@@ -53,3 +54,25 @@ def signupFunc():
 def logout():
     logout_user()
     return redirect(url_for('auth.loginFunc'))
+
+@auth.route('/users')
+@login_required
+@roles_required( 'admin')
+def users():
+    users = User.query.all()
+    return render_template('users.html', title='Users', users=users)
+
+@auth.route('/add-user')
+@login_required
+@roles_required( 'admin')
+def add_user():
+    form = AdminForm()
+    return render_template('addUser.html', title='User', form=form)
+
+@auth.route('/edit-user')
+@login_required
+@roles_required( 'admin')
+def edit_user():
+    form = AdminForm()
+    roles = Role.query.all()
+    return render_template('addUser.html', title='User', roles=roles, form=form)

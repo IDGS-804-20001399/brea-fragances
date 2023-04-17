@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+{% from '_macros.html' import render_field %}
+<style>
+    body{
+        background-color: #222222;
+    }
+</style>
+<div class="contaner"style="margin-top: 7%; margin-bottom: 5%; max-width: 75%; margin-left:auto; margin-right:auto; ">
+
+<h1 class="display-5 fw-bold text-center" style="color: whitesmoke;">{{ title }}</h1>
+<a class="btn btn-primary mb-3"
+   href="{{ url_for('auth.add_user') }}">
+    <i class="bi bi-plus-circle"></i>
+    Add user
+</a>
+<table class="table table-hover">
+    <thead>
+    <tr class="table-secondary">
+        <th scope="col">ID</th>
+        <th scope="col">Email</th>
+        <th scope="col">Options</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if users %}
+        {% for user in users %}
+            <tr class="table-secondary">
+                <th scope="row">{{ user.id }}</th>
+                <td>{{ user.email }}</td>
+                <td><a class="btn btn-warning btn-sm mb-2" style="margin-right: 10px;"
+                    href="{{ url_for('auth.edit_user', user_id=user.id) }}">
+                    <i class="bi bi-pencil-square"></i>
+                </a></td>
+            </tr>
+        {% endfor %}
+    {% else %}
+    <tr class="table-secondary">
+        <th scope="row">--</th>
+        <td>--</td>
+        <td>--</td>
+        <td>--</td>
+        <td>--</td>
+        <td><a href="" class="btn btn-outline-dark">--</a></td>
+    </tr>
+    {% endif %}
+    </tbody>
+</table>
+</div>
+
+{% endblock body %}

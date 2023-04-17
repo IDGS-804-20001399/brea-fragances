@@ -23,8 +23,7 @@ def adminOrderDetails():
     if request.method == 'POST':
         order = Order.query.filter_by(id=request.form.get("order_id")).first()
         customer = Customer.query.filter_by(id=order.user_id).first()
-        orderDetails = OrderDetails.query.filter_by(order_id=request.form.get("order_id")).all()
-    return render_template('adminOrderDetails.html', title='Order details',order=order, customer=customer, orderDetails=orderDetails)
+    return render_template('adminOrderDetails.html', title='Order details',order=order, customer=customer)
 
 
 @order.route('/customers', methods=["POST", "GET"])
