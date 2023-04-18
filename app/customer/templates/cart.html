@@ -25,33 +25,35 @@
                       <div class="d-flex justify-content-between align-items-center mb-4">
                         <div>
                           <p class="mb-1">Shopping cart</p>
-                          <p class="mb-0">You have <b>{{products|count}}</b> items in your cart</p>
+                          <p class="mb-0">You have <b>{{cart|count}}</b> items in your cart</p>
                         </div>
                       </div>
       
                       
       
-                      {% if products|count != 0 %}
-                      {% for p in products %}
+                      {% if cart|count != 0 %}
+                      {% for p in cart %}
                       <div class="card mb-3 animate__animated animate__lightSpeedInLeft">
                         <div class="card-body">
                           <div class="d-flex justify-content-between">
                             <div class="d-flex flex-row align-items-center">
                               <div>
                                 <img
-                                  src="{{ p.image_url }}"
+                                  src="{{ p['product']['image_url'] }}"
                                   class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
                               </div>
                               <div class="ms-3">
-                                <h5>{{ p.name }}</h5>
+                                <h5>{{ p['product']['name'] }}</h5>
                               </div>
                             </div>
                             <div class="d-flex flex-row align-items-left">
                               <div style="max-width: 60px; margin: 0 30px 0 auto">
-                                <input value="1" type="number" min="1" default="1" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                <form action="{{ url_for('home.edit_quantity', product_id=p['product']['id']) }}" method="post">
+                                  <input name="quantity" value="{{ p['quantity'] }}" type="number" min="1" default="1" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                </form>
                               </div>
                               <div style="width: 80px;">
-                                <h5 class="mb-0">$ {{ p.price }} MXN</h5>
+                                <h5 class="mb-0">{{ (p['product']['price'] * p['quantity']) | moneyFormat }} MXN</h5>
                               </div>
                               <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
                             </div>
@@ -122,7 +124,7 @@
       
                           <div class="d-flex justify-content-between">
                             <p class="mb-2">Subtotal</p>
-                            <p class="mb-2">$4798.00</p>
+                            <p class="mb-2">{{ subtotal | moneyFormat}}</p>
                           </div>
       
                           <div class="d-flex justify-content-between">
@@ -154,3 +156,14 @@
       </section>
 </div>
 {% endblock body %}
+
+{% block scripts %}
+<script>
+  document.querySelectorAll('input[name=quantity]').forEach(i => {
+    i.addEventListener('input', () => {
+      const form = i.parentElement;
+      form.submit()
+    });
+  });
+</script>
+{% endblock %}

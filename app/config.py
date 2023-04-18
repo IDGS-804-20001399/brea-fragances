@@ -3,4 +3,6 @@ class Config:
     SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:@127.0.0.1/fragance_db";
     SECURITY_PASSWORD_SALT = "this is a security salt"
     UPLOADS_AUTOSERVE = True
+    SESSION_PERMANENT = False
+    SESSION_TYPE = 'filesystem'
     DEBUG = True

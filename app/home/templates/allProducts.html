@@ -45,8 +45,8 @@
                                   <p class="card-text">{{ item.description }}</p>
                               </div>
                               <div class="col-2 cart">
-                                <form action="/add" method="post">
-                                  <input type="hidden" id="product_id" name="product_id" value="{{ item.id }}">
+                                <form action="{{ url_for('home.add', product_id=item.id) }}" method="post">
+                                  <input type="hidden" name="url" value="{{ url_for('home.products') }}">
                                   <button type="submit" class="btn btn-dark"><i class="fa fa-shopping-cart"></i>   <i class="fa fa-plus"></i></button>
                                 </form>
                               </div>
