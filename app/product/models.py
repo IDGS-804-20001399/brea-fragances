@@ -36,7 +36,7 @@ class Product(db.Model):
 
     @hybrid_property
     def inventory(self):
-        return self.makes.filter(ProductInventory.expiration_date > date.today()).order_by(ProductInventory.expiration_date).all()
+        return self.makes.filter(ProductInventory.available_quantity > 0).filter(ProductInventory.expiration_date > date.today()).order_by(ProductInventory.expiration_date).all()
 
     @hybrid_property
     def stock(self):
