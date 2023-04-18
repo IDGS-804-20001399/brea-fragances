@@ -75,10 +75,26 @@ def cart():
                 )
                 db.session.add(detail)
                 db.session.commit()
+                #discounting from inventory
                 p = Product.query.get(product_id)
-                make = p.makes.filter(ProductInventory.expiration_date > date.today()).order_by(ProductInventory.expiration_date).first()
-                make.available_quantity -= quantity
-                db.session.commit()
+                makes = p.makes.filter(ProductInventory.expiration_date > date.today()).order_by(ProductInventory.expiration_date).all()
+                index = 0
+                remaining = quantity
+                while True:
+                    make = makes[index]
+                    difference = make.available_quantity - remaining 
+                    if difference >= 0:
+                        make.available_quantity = difference
+                        db.session.commit()
+                        break
+                    remaining = abs(difference)
+                    difference = 0
+                    make.available_quantity = 0
+                    db.session.commit()
+                    index += 1
+
+
+
                 cart = []
                 flash("Order made successfully", 'success')
         else:
