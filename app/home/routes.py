@@ -49,3 +49,16 @@ def edit_quantity(product_id):
             result['quantity'] = int(request.form.get("quantity"))
     return redirect(url_for('customer.cart'))
 
+
+@home.route('/remove/<int:product_id>', methods=['GET'])
+@login_required
+@roles_accepted('customer', 'admin')
+def remove(product_id):
+    cart = session.get('cart')
+    if cart:
+        result = next((item for item in cart if item["product"]['id'] == product_id), False)
+        if result:
+            cart.remove(result)
+    return redirect(url_for('customer.cart'))
+
+

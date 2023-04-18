@@ -2,10 +2,12 @@ from flask import render_template, url_for, flash, redirect, request, Blueprint,
 from flask_security import login_required, current_user, roles_required
 from app.customer.forms import UserForm
 from app.customer.models import Customer
-from app.product.models import Product
+from app.product.models import Product, ProductInventory
+from app.order.models import Order, OrderDetails
 from app import db
 import json
 from app.creditcard import luhn
+from datetime import date
 
 customer = Blueprint('customer', __name__,
                  template_folder='templates',
@@ -48,17 +50,44 @@ def cart():
     if not cart:
         cart = []
     subtotal = sum([i['product']['price'] * i['quantity'] for i in cart])
-    # cart = request.cookies.get('cartItems')
-    # products = []
-    # if cart is not None:
-    #     cartItems = json.loads(cart)
-    #     print(cartItems)
-    #     for item in cartItems:
-    #         products.append(Product.query.filter_by(id=item['item']).first())
-
+    delivery_fee = 99 if subtotal < 1000 else 0
+    total = subtotal + delivery_fee
+    if request.method == 'POST':
+        card_number = request.form['card_number']
+        if luhn.is_valid(card_number):
+            order = Order(
+                payment = f'Card {card_number}',
+                delivery_method = 'Shipping',
+                delivery_fee = delivery_fee,
+                status = 'Ordered',
+                user_id = current_user.id,
+            )
+            db.session.add(order)
+            db.session.commit()
+            for product in cart:
+                product_id = product['product']['id']
+                quantity = product['quantity']
+                detail = OrderDetails(
+                    order_id = order.id,
+                    product_id = product_id,
+                    quantity = quantity,
+                    price = product['product']['price'],
+                )
+                db.session.add(detail)
+                db.session.commit()
+                p = Product.query.get(product_id)
+                make = p.makes.filter(ProductInventory.expiration_date > date.today()).order_by(ProductInventory.expiration_date).first()
+                make.available_quantity -= quantity
+                db.session.commit()
+                cart = []
+                flash("Order made successfully", 'success')
+        else:
+            flash("Card number is invalid", 'danger')
     return render_template('cart.html', title='My cart', 
                            cart=cart,
-                           subtotal=subtotal)
+                           subtotal=subtotal,
+                           delivery_fee=delivery_fee,
+                           total = total)
 
 @customer.route('/checkout', methods=["POST", "GET"])
 @login_required
@@ -80,13 +109,6 @@ def details():
 @login_required
 @roles_required('customer')
 def validate():
-    if request.method == 'POST':
-        card_number = request.form['card_number']
-    
-        if luhn.is_valid(card_number):
-            flash("Card number is valid", 'success')
-        else:
-            flash("Card number is invalid", 'danger')
     return redirect(url_for('customer.cart'))
 
 @customer.route('/statistics', methods=["POST", "GET"])
