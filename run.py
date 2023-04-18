@@ -6,6 +6,10 @@ app = create_app()
 def moneyFormat(value):
     return "${:,.2f}".format(value)
 
+@app.template_filter()
+def numberFormat(value):
+    return "{:.2f}".format(value)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

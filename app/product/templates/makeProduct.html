@@ -1,0 +1,74 @@
+{% extends "adminBase.html" %}
+
+{% block body %}
+
+{% from '_macros.html' import render_field %}
+
+<div class="container">
+  <a class="btn btn-outline-light mb-3"
+     href="{{ url_for('product.products') }}">
+    <i class="bi bi-arrow-left"></i>
+    Back
+  </a>
+  <table class="table table-hover">
+    <thead>
+      <tr class="table-secondary">
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Image</th>
+        <th scope="col">Production cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-secondary">
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>
+          <img height="100px"
+               src="{{ product.image_url }}">
+        </td>
+        <td>{{ product.production_cost | moneyFormat }}</td>
+      </tr>
+    </tbody>
+  </table>
+  {% if missing %}
+  <h2 style="color: whitesmoke;">Missing supplies</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr class="table-secondary">
+        <th scope="col">Name</th>
+        <th scope="col">Missing buy unit</th>
+        <th scope="col">Missing use unit</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for supply in missing %}
+      <tr class="table-secondary">
+        <td>{{ supply['name'] }}</td>
+        <td>
+          {{ supply['buy_missing'] }}
+          {{ supply['buy_unit'] }}
+        </td>
+        <td>
+          {{ supply['missing'] }}
+          {{ supply['use_unit'] }}
+        </td>
+      </tr>
+      {% endfor %}
+  </table>
+  {% endif %}
+
+<form method="POST"
+      action=""
+      class="row g-3"
+      enctype="multipart/form-data"
+      style="max-width: 50%; margin: auto;">
+    {{ form.hidden_tag() }}
+    {{ render_field(form.quantity) }}
+    {{ render_field(form.expiration_date) }}
+    {{ form.submit(class="btn btn-warning") }}
+</form>
+
+</div>
+
+{% endblock body %}

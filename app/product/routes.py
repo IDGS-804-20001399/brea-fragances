@@ -3,10 +3,11 @@ from flask import (render_template, url_for, flash, redirect,
                     request, Blueprint)
 from flask_security import login_required, roles_required
 from sqlalchemy import text
-from app.product.forms import ProductForm
-from app.product.models import Product, ProductSupplies
-from app.supply.models import Supply
+from app.product.forms import ProductForm, MakeForm
+from app.product.models import Product, ProductSupplies, ProductInventory
+from app.supply.models import Supply, SupplyBuys
 from app import product_pics, db
+from datetime import date
 
 
 product = Blueprint('product', __name__,
@@ -174,9 +175,39 @@ def details(product_id):
 @login_required
 @roles_required('admin')
 def make(product_id):
-    return render_template('productDetails.html', 
-                           title='Make product')
-                        
+    product = Product.query.get_or_404(product_id)
+    form = MakeForm()
+    if form.validate_on_submit():
+        missing = product.can_produce(form.quantity.data)
+        if len(missing) == 0:
+            inventory = ProductInventory(
+                expiration_date = form.expiration_date.data,
+                quantity = form.quantity.data,
+                available_quantity = form.quantity.data,
+                unit_cost = product.production_cost,
+                product_id = product_id
+            )
+            db.session.add(inventory)
+            db.session.commit()
+            for supply in product.productSupplies:
+                spent_quantity = supply.quantity * form.quantity.data
+                buy = supply.supply.buys.filter(SupplyBuys.expiration_date > date.today()).order_by(SupplyBuys.expiration_date).first()
+                buy.available_use_quantity -= spent_quantity
+                db.session.commit()
+            flash('Product made successfully', 'success')
+            return redirect(url_for('product.details', product_id=product_id))
+        else:
+            flash('Not enough supplies to produce that amount of product', 'danger')
+            return render_template('makeProduct.html', 
+                                title='Product Details', 
+                                product=product,
+                                form = form,
+                                missing = missing)
+    return render_template('makeProduct.html', 
+                        title='Make product', 
+                        product=product,
+                        form = form,)
+
 
 @product.route('/product-info/<int:product_id>', methods=["POST", "GET"])
 @login_required

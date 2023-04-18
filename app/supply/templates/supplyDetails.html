@@ -36,7 +36,7 @@
         <td>{{ supply.use_unit }}</td>
         <td>{{ supply.equivalence }}</td>
         <td>
-          {{ supply.stock }}
+          {{ supply.stock | numberFormat }}
           {{ supply.buy_unit }}
         </td>
         <td>
@@ -66,7 +66,7 @@
         <td>{{ buy.buy_date.date() }}</td>
         <td>{{ buy.expiration_date.date() }}</td>
         <td>
-          {{ buy.available_quantity}}
+          {{ buy.available_quantity | numberFormat }}
           {{ supply.buy_unit }}
         </td>
         <td>

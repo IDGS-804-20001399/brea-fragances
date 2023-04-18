@@ -20,7 +20,7 @@ class Supply(db.Model):
 
     @hybrid_property
     def inventory(self):
-        return self.buys.filter(SupplyBuys.expiration_date > date.today()).order_by(SupplyBuys.buy_date).all()
+        return self.buys.filter(SupplyBuys.expiration_date > date.today()).order_by(SupplyBuys.expiration_date).all()
 
     @hybrid_property
     def stock(self):

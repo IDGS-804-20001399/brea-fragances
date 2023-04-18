@@ -1,69 +1,121 @@
 {% extends "adminBase.html" %}
 
 {% block body %}
+
+{% from '_macros.html' import render_field %}
+
 <div class="container">
-
     <a class="btn btn-outline-light mb-3"
-    href="{{ url_for('product.products') }}">
-    <i class="bi bi-arrow-left"></i>
-    Back
-</a>
-<table class="table table-hover">
-    <thead>
-        <tr class="table-secondary">
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Image</th>
-            <th scope="col">Production cost</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="table-secondary">
-            <td>{{ product.name }}</td>
-            <td>{{ product.price }}</td>
-            <td>
-                <img height="100px"
-                     src="{{ product.image_url }}">
-            </td>
-            <td>{{ product.production_cost | moneyFormat }}</td>
-        </tr>
-    </tbody>
-</table>
+       href="{{ url_for('product.products') }}">
+        <i class="bi bi-arrow-left"></i>
+        Back
+    </a>
+    <a class="btn btn-primary mb-3"
+       href="{{ url_for('product.make', product_id=product.id) }}">
+        <i class="bi bi-plus-circle-fill"></i>
+        make product
+    </a>
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-secondary">
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Image</th>
+                <th scope="col">Production cost</th>
+                <th scope="col">Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-secondary">
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>
+                    <img height="100px"
+                         src="{{ product.image_url }}">
+                </td>
+                <td>{{ product.production_cost | moneyFormat }}</td>
+                <td>{{ product.stock }}</td>
+            </tr>
+        </tbody>
+    </table>
 
-<h2 style="color: whitesmoke;">Supplies</h2>
-<table class="table table-hover">
-    <thead>
-        <tr class="table-secondary">
-            <th scope="col">Name</th>
-            <th scope="col">Cost</th>
-            <th scope="col">Buy Unit</th>
-            <th scope="col">Use Unit</th>
-            <th scope="col">Equivalence</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Quantity cost</th>
-            <th scope="col">Image</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for productSupply in product.productSupplies %}
-            
-        <tr class="table-secondary">
-            <td>{{ productSupply.supply.name }}</td>
-            <td>{{ productSupply.supply.cost }}</td>
-            <td>{{ productSupply.supply.buy_unit }}</td>
-            <td>{{ productSupply.supply.use_unit }}</td>
-            <td>{{ productSupply.supply.equivalence }}</td>
-            <td>{{ productSupply.quantity }}
-                {{ productSupply.supply.use_unit }}
-            </td>
-            <td>{{ productSupply.quantity_cost | moneyFormat }}</td>
-            <td>
-                <img height="100px"
-                src="{{ productSupply.supply.image_url }}">
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <h2 style="color: whitesmoke;">Inventory</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-secondary">
+                <th scope="col">Creation date</th>
+                <th scope="col">Expiration date</th>
+                <th scope="col">Available quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in product.inventory %}
+            <tr class="table-secondary">
+                <td>{{ product.creation_date.date() }}</td>
+                <td>{{ product.expiration_date.date() }}</td>
+                <td>{{ product.available_quantity }}</td>
+            </tr>
+            {% endfor %}
+    </table>
+
+    <h2 style="color: whitesmoke;">Production</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-secondary">
+                <th scope="col">Creation date</th>
+                <th scope="col">Expiration date</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Unit cost</th>
+                <th scope="col">Total cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in product.make_records %}
+            <tr class="table-secondary">
+                <td>{{ product.creation_date.date() }}</td>
+                <td>{{ product.expiration_date.date() }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.unit_cost | moneyFormat }}</td>
+                <td>{{ product.total_cost | moneyFormat }}</td>
+            </tr>
+            {% endfor %}
+    </table>
+
+    <h2 style="color: whitesmoke;">Supplies</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-secondary">
+                <th scope="col">Name</th>
+                <th scope="col">Cost</th>
+                <th scope="col">Buy Unit</th>
+                <th scope="col">Use Unit</th>
+                <th scope="col">Equivalence</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Quantity cost</th>
+                <th scope="col">Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for productSupply in product.productSupplies %}
+
+            <tr class="table-secondary">
+                <td>{{ productSupply.supply.name }}</td>
+                <td>{{ productSupply.supply.cost }}</td>
+                <td>{{ productSupply.supply.buy_unit }}</td>
+                <td>{{ productSupply.supply.use_unit }}</td>
+                <td>{{ productSupply.supply.equivalence }}</td>
+                <td>{{ productSupply.quantity }}
+                    {{ productSupply.supply.use_unit }}
+                </td>
+                <td>{{ productSupply.quantity_cost | moneyFormat }}</td>
+                <td>
+                    <img height="100px"
+                         src="{{ productSupply.supply.image_url }}">
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
+
 {% endblock body %}
