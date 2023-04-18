@@ -195,9 +195,21 @@ def make(product_id):
             db.session.commit()
             for supply in product.productSupplies:
                 spent_quantity = supply.quantity * form.quantity.data
-                buy = supply.supply.buys.filter(SupplyBuys.expiration_date > date.today()).order_by(SupplyBuys.expiration_date).first()
-                buy.available_use_quantity -= spent_quantity
-                db.session.commit()
+                buys = supply.supply.buys.filter(SupplyBuys.expiration_date > date.today()).order_by(SupplyBuys.expiration_date).all()
+                index = 0
+                remaining = spent_quantity
+                while True:
+                    buy = buys[index]
+                    difference = buy.available_use_quantity - remaining 
+                    if difference >= 0:
+                        buy.available_use_quantity = difference
+                        db.session.commit()
+                        break
+                    remaining = abs(difference)
+                    difference = 0
+                    buy.available_use_quantity = 0
+                    db.session.commit()
+                    index += 1
             flash('Product made successfully', 'success')
             return redirect(url_for('product.details', product_id=product_id))
         else:
