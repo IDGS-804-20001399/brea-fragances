@@ -62,18 +62,53 @@ def users():
     users = User.query.all()
     return render_template('users.html', title='Users', users=users)
 
-@auth.route('/add-user')
+@auth.route('/add-user', methods=['GET', 'POST'])
 @login_required
 @roles_required( 'admin')
 def add_user():
     form = AdminForm()
     roles = Role.query.all()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            encrypted_password = encrypt_password(form.password.data)
+            user = user_datastore.create_user(email=form.email.data, password=encrypted_password)
+            db.session.add(user)
+            user_datastore.add_role_to_user(form.email.data, request.form.get('role'))
+            db.session.commit()
+            flash('User saved successfully', 'success')
+            return redirect(url_for("auth.users"))
+
     return render_template('addUser.html', title='User', roles=roles, form=form)
 
-@auth.route('/edit-user')
+@auth.route('/edit-user/<int:user_id>', methods=["POST", "GET"])
 @login_required
-@roles_required( 'admin')
-def edit_user():
+@roles_required('admin')
+def edit_user(user_id):
     form = AdminForm()
+    user = User.query.get_or_404(user_id)
     roles = Role.query.all()
+
+    if request.method=='POST':
+        if not user_datastore.get_user(form.email.data) and user.email != form.email.data:
+            user.email = form.email.data
+            user.password = form.password.data
+            user_datastore.remove_role_from_user(form.email.data, user.role)
+            user_datastore.add_role_to_user(form.email.data, request.form.get('role'))
+            db.session.commit()
+            flash('User saved successfully', 'success')
+            return redirect(url_for('auth.users'))
+        else:
+            flash('This email is already taken', 'danger')
+    elif request.method == 'GET':
+        form.email.data = user.email
     return render_template('addUser.html', title='User', roles=roles, form=form)
+
+@auth.route('/delete-user/<int:user_id>', methods=["POST"])
+@login_required
+@roles_required('admin')
+def delete_user(user_id):
+    user = User.query.get_or_404(user_id)
+    db.session.delete(user)
+    db.session.commit()
+    flash('User deleted successfully', 'success')
+    return redirect(url_for('auth.users'))
