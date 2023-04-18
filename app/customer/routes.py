@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request, Blueprint
+from flask import render_template, url_for, flash, redirect, request, Blueprint, session
 from flask_security import login_required, current_user, roles_required
 from app.customer.forms import UserForm
 from app.customer.models import Customer
@@ -44,27 +44,31 @@ def myOrders():
 @login_required
 @roles_required('customer')
 def cart():
-    cart = request.cookies.get('cartItems')
-    products = []
-    if cart is not None:
-        cartItems = json.loads(cart)
-        for item in cartItems:
-            products.append(Product.query.filter_by(id=item['item']).first())
-
-    return render_template('cart.html', title='My cart', products=products)
-
-# @customer.route('/checkout', methods=["POST", "GET"])
-# @login_required
-# @roles_required('customer')
-# def checkout():
+    cart = session.get('cart')
+    if not cart:
+        cart = []
+    subtotal = sum([i['product']['price'] * i['quantity'] for i in cart])
     # cart = request.cookies.get('cartItems')
     # products = []
     # if cart is not None:
     #     cartItems = json.loads(cart)
+    #     print(cartItems)
     #     for item in cartItems:
     #         products.append(Product.query.filter_by(id=item['item']).first())
 
-    # return render_template('cart.html', title='My cart', products=products)
+    return render_template('cart.html', title='My cart', 
+                           cart=cart,
+                           subtotal=subtotal)
+
+@customer.route('/checkout', methods=["POST", "GET"])
+@login_required
+@roles_required('customer')
+def checkout():
+    cart = request.cookies.get('cartItems')
+    if cart is not None:
+        cartItems = json.loads(cart)
+        print(cartItems)
+    return render_template('cart.html', title='My cart', products=products)
 
 @customer.route('/order-details', methods=["POST", "GET"])
 @login_required

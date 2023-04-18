@@ -10,7 +10,7 @@ class Order(db.Model):
     date = db.Column(db.DateTime, nullable=False)
     user = db.relationship('User', lazy=True, uselist=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    details = db.relationship('OrderDetails', lazy=True)
+    details = db.relationship('OrderDetails', lazy=True, backref='order')
 
     @hybrid_property
     def total(self):
@@ -20,7 +20,6 @@ class Order(db.Model):
 
 class OrderDetails(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    order = db.relationship('Order', lazy=True, uselist=False)
     order_id = db.Column(db.Integer, db.ForeignKey('order.id'))
     product = db.relationship('Product', lazy=True, uselist=False)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'))

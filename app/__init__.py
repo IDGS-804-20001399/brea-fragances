@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_security import Security, SQLAlchemyUserDatastore, utils
 from flask_uploads import UploadSet, configure_uploads, IMAGES
+from flask_session import Session
 from app.config import Config
 import os
 
@@ -18,6 +19,7 @@ def create_app():
     app.config.from_object(Config)
     db.init_app(app)
     configure_uploads(app, [product_pics, supply_pics])
+    Session(app)
 
     from app.auth.routes import auth
     from app.product.routes import product

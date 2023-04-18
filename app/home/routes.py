@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request, Blueprint, make_response
+from flask import render_template, url_for, flash, redirect, request, Blueprint, session
 from flask_security import login_required, current_user, roles_required, roles_accepted
 from app.product.models import Product
 import json
@@ -18,31 +18,34 @@ def products():
     products = Product.query.all()
     return render_template('allProducts.html', title='Products', products=products)
 
-@home.route('/add', methods=['POST', 'GET'])
+@home.route('/add/<int:product_id>', methods=['POST'])
 @login_required
 @roles_accepted('customer', 'admin')
-def add():
-    products = Product.query.all()
-    resp = make_response(render_template('allProducts.html', title='Products', products=products))
-    product_id = int(request.form.get("product_id"))
-    if request.method == "POST":
-        product_id = int(request.form.get("product_id"))
-        cart = request.cookies.get('cartItems')
-        if cart is not None:
-            cartItems = json.loads(cart)
-            if any(item["item"] == product_id for item in cartItems):
-                flash('The item is already in the cart', 'danger')
-                return resp
-            else:
-                cartItems.append({"item": product_id})
-                resp.set_cookie('cartItems', json.dumps(cartItems))
-                flash('Item added to cart successfully', 'success')
-                return resp
+def add(product_id):
+    cart = session.get('cart')
+    product = Product.query.get(product_id).__dict__
+    if not cart:
+        cart = []
+        cart.append({'product': product, 'quantity': 1})
+    else:
+        result = next((item for item in cart if item["product"]['id'] == product_id), False)
+        if result:
+            result['quantity'] += 1
         else:
-            cartItems = [{"item": product_id}]
-            resp.set_cookie('cartItems', json.dumps(cartItems))
-            flash('Item added to cart successfully', 'success')
-            return resp
+            cart.append({'product': product, 'quantity': 1})
+    session['cart'] = cart
+    flash('Producto agregado al carrito', 'success')
+    return redirect(request.form.get("url"))
 
-    return resp
+
+@home.route('/edit-quantity/<int:product_id>', methods=['POST'])
+@login_required
+@roles_accepted('customer', 'admin')
+def edit_quantity(product_id):
+    cart = session.get('cart')
+    if cart:
+        result = next((item for item in cart if item["product"]['id'] == product_id), False)
+        if result:
+            result['quantity'] = int(request.form.get("quantity"))
+    return redirect(url_for('customer.cart'))
 
