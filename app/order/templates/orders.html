@@ -1,17 +1,12 @@
-{% extends "base.html" %}
+{% extends "adminBase.html" %}
 
 {% block body %}
 
 {% from '_macros.html' import render_field %}
-<style>
-    body{
-        background-color: #222222;
-    }
-</style>
-<div class="contaner"style="margin-top: 7%; margin-bottom: 5%; max-width: 75%; margin-left:auto; margin-right:auto; ">
 
-    <h1 class="display-5 fw-bold text-center" style="margin-bottom: 5%; color: whitesmoke;">{{ title }}</h1>
-    
+<div class="contaner"style="margin-bottom: 5%; max-width: 75%; margin-left:auto; margin-right:auto; ">
+
+
     <table class="table table-hover">
         <thead>
             <tr class="table-secondary">

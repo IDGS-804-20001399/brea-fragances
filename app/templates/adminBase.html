@@ -5,16 +5,22 @@
 {% endblock %}
 
 {% block content %}
-<!-- <style>
-</style> -->
+<style>
+    body{
+        background-image: url('../static/images/background-Admin.jpg');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+</style>
 
 {% from '_macros.html' import navbar with context %}
 {% from '_macros.html' import display_alerts %}
 {{ navbar() }}
 
 <div class="container-fluid py-5">
-    <h3 class="display-6 fw-bold" style="color: whitesmoke;">{{ current_user.email }}</h3>
-    <h1 class="display-5 fw-bold text-center" style="color: whitesmoke;">{{ title }}</h1>
+    <h3 class="display-6 fw-bold text-end" style="color: whitesmoke; -webkit-text-stroke: 1px black;">{{ current_user.email }}</h3>
+    
+<h1 class="display-5 fw-bold text-center" style="color: whitesmoke;">{{ title }}</h1>
 
     {{ display_alerts() }}
   
