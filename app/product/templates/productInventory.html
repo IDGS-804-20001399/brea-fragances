@@ -5,26 +5,16 @@
 {% from '_macros.html' import render_field %}
 
 <div class="container">
-    <div>
-        <a class="btn btn-light mb-3"
-       href="{{ url_for('product.products') }}">
+    <a class="btn btn-light mb-3"
+    href="{{ url_for('product.details', product_id=product.id) }}">
         <i class="bi bi-arrow-left"></i>
     </a>
     <br>
-    <a class="btn btn-outline-warning mb-3"
+    <a class="btn btn-warning mb-3"
        href="{{ url_for('product.make', product_id=product.id) }}">
         <i class="bi bi-clipboard-plus"></i>
         Make more
     </a>
-    <a class="btn btn-outline-warning mb-3" style="margin-left: 10px;" href="{{ url_for('product.product_inventory', product_id=product.id) }}">
-        <i class="bi bi-boxes"></i>
-        Inventory
-    </a>
-      <a class="btn btn-outline-warning mb-3" style="margin-left: 10px;" href="{{ url_for('product.product_production', product_id=product.id) }}">
-        <i class="bi bi-clipboard-check"></i>
-        Production
-    </a>
-    </div>
     <table class="table table-hover">
         <thead>
             <tr class="table-secondary">
@@ -68,28 +58,6 @@
             {% endfor %}
     </table>
 
-    <h2 style="color: whitesmoke;">Production</h2>
-    <table class="table table-hover">
-        <thead>
-            <tr class="table-secondary">
-                <th scope="col">Creation date</th>
-                <th scope="col">Expiration date</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Unit cost</th>
-                <th scope="col">Total cost</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for product in product.make_records %}
-            <tr class="table-secondary">
-                <td>{{ product.creation_date.date() }}</td>
-                <td>{{ product.expiration_date.date() }}</td>
-                <td>{{ product.quantity }}</td>
-                <td>{{ product.unit_cost | moneyFormat }}</td>
-                <td>{{ product.total_cost | moneyFormat }}</td>
-            </tr>
-            {% endfor %}
-    </table>
 
     <h2 style="color: whitesmoke;">Supplies</h2>
     <table class="table table-hover">

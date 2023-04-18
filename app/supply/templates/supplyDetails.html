@@ -3,16 +3,27 @@
 {% block body %}
 <div class="container">
 
-  <a class="btn btn-outline-light mb-3"
+  <div>
+    <a class="btn btn-light mb-3"
      href="{{ url_for('supply.supplies') }}">
     <i class="bi bi-arrow-left"></i>
-    Back
+    
   </a>
-  <a class="btn btn-primary mb-3"
+  <br>
+  <a class="btn btn-outline-warning mb-3" 
      href="{{ url_for('supply.buy_supply', supply_id=supply.id) }}">
-    <i class="bi bi-plus-circle-fill"></i>
+    <i class="bi bi-bag-plus"></i>
     Buy Supply
   </a>
+  <a class="btn btn-outline-warning mb-3" style="margin-left: 10px;" href="{{ url_for('supply.inventory', supply_id=supply.id) }}">
+    <i class="bi bi-boxes"></i>
+    Inventory
+</a>
+  <a class="btn btn-outline-warning mb-3" style="margin-left: 10px;" href="{{ url_for('supply.buys', supply_id=supply.id) }}">
+    <i class="bi bi-shop"></i>
+    Buys
+</a>
+  </div>
 
   <table class="table table-hover">
 
@@ -50,57 +61,6 @@
       </tr>
     </tbody>
   </table>
-  <h2 style="color: whitesmoke;">Inventory</h2>
-  <table class="table table-hover">
-    <thead>
-      <tr class="table-secondary">
-        <th scope="col">Buy date</th>
-        <th scope="col">Expiration Date</th>
-        <th scope="col">Available quantity</th>
-        <th scope="col">Available use quantity</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for buy in supply.inventory %}
-      <tr class="table-secondary">
-        <td>{{ buy.buy_date.date() }}</td>
-        <td>{{ buy.expiration_date.date() }}</td>
-        <td>
-          {{ buy.available_quantity | numberFormat }}
-          {{ supply.buy_unit }}
-        </td>
-        <td>
-          {{ buy.available_use_quantity}}
-          {{ supply.use_unit }}
-        </td>
-      </tr>
-      {% endfor %}
-  </table>
 
-  <h2 style="color: whitesmoke;">Buys</h2>
-  <table class="table table-hover">
-    <thead>
-      <tr class="table-secondary">
-        <th scope="col">Buy date</th>
-        <th scope="col">Expiration Date</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Unit Cost</th>
-        <th scope="col">Total Cost</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for buy in supply.buy_records %}
-      <tr class="table-secondary">
-        <td>{{ buy.buy_date.date() }}</td>
-        <td>{{ buy.expiration_date.date() }}</td>
-        <td>
-          {{ buy.quantity}}
-          {{ supply.buy_unit }}
-        </td>
-        <td>  {{ buy.unit_cost | moneyFormat }} </td>
-        <td>  {{ buy.total_cost | moneyFormat }} </td>
-      </tr>
-      {% endfor %}
-  </table>
 </div>
 {% endblock body %}

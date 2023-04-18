@@ -1,0 +1,41 @@
+{% extends "adminBase.html" %}
+
+{% block body %}
+<div class="container">
+
+  <a class="btn btn-light mb-3"
+     href="{{ url_for('supply.supplies') }}">
+    <i class="bi bi-arrow-left"></i>
+    Back
+  </a>
+ 
+  <table class="table table-hover">
+    <thead>
+      <tr class="table-secondary">
+        <th scope="col">Buy date</th>
+        <th scope="col">Expiration Date</th>
+        <th scope="col">Available quantity</th>
+        <th scope="col">Available use quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if supply %}
+      {% for buy in supply.inventory %}
+      <tr class="table-secondary">
+        <td>{{ buy.buy_date.date() }}</td>
+        <td>{{ buy.expiration_date.date() }}</td>
+        <td>
+          {{ buy.available_quantity | numberFormat }}
+          {{ supply.buy_unit }}
+        </td>
+        <td>
+          {{ buy.available_use_quantity}}
+          {{ supply.use_unit }}
+        </td>
+      </tr>
+      {% endfor %}
+      {% endif %}
+  </table>
+
+</div>
+{% endblock body %}

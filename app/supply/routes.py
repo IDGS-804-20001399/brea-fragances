@@ -19,19 +19,6 @@ def supplies():
     return render_template('supplies.html', title='Supplies', supplies=supplies)
 
 
-@supply.route('/supply-inventory')
-@login_required
-@roles_required('admin')
-def inventory():
-#     select s.*, i.buy_date, i.expiration_date, 
-# sum(i.quantity) stock_buy_unit,
-# sum(i.quantity) * s.equivalence stock_use_unit
-# from supply s 
-# inner join supply_inventory i on s.id = i.supply_id 
-# group by s.id;
-    pass
-
-
 @supply.route('/buy-supply/<int:supply_id>', methods=["POST", "GET"])
 @login_required
 @roles_required('admin')
@@ -150,3 +137,21 @@ def delete_supply(supply_id):
     db.session.commit()
     flash('Supply deleted successfully', 'success')
     return redirect(url_for('supply.supplies'))
+
+@supply.route('/supply-inventory/<int:supply_id>', methods=["POST", "GET"])
+@login_required
+@roles_required('admin')
+def inventory(supply_id):
+    supply = Supply.query.get_or_404(supply_id)
+    return render_template('inventory.html', 
+                           title='Inventory', 
+                           supply=supply,)
+
+@supply.route('/buys/<int:supply_id>', methods=["POST", "GET"])
+@login_required
+@roles_required('admin')
+def buys(supply_id):
+    supply = Supply.query.get_or_404(supply_id)
+    return render_template('buys.html', 
+                           title='Buys', 
+                           supply=supply,)

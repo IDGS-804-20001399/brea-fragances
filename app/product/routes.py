@@ -156,7 +156,9 @@ def delete_product(product_id):
 @login_required
 def search():
     word = request.form.get('search')
-    if(word != None and word !=''):
+    search = ''
+    products = []
+    if(word != None and word != ''):
         search="%{}%".format(word)
         products = Product.query.filter(Product.name.like(search)).all()
 
@@ -213,6 +215,24 @@ def make(product_id):
 
 @product.route('/product-info/<int:product_id>', methods=["POST", "GET"])
 @login_required
+@roles_required('admin')
 def productInfo(product_id):
     product = Product.query.get_or_404(product_id)
     return render_template('singleProduct.html', title='Details', product=product)
+
+@product.route('/product-inventory/<int:product_id>', methods=["POST", "GET"])
+@login_required
+@roles_required('admin')
+def product_inventory(product_id):
+    product = Product.query.get_or_404(product_id)
+    return render_template('productInventory.html', title='Inventory', product=product)
+
+@product.route('/production/<int:product_id>', methods=["POST", "GET"])
+@login_required
+@roles_required('admin')
+def product_production(product_id):
+    product = Supply.query.get_or_404(product_id)
+    return render_template('production.html', 
+                           title='Production', 
+                           product=product,)
+
