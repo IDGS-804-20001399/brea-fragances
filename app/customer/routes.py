@@ -1,13 +1,14 @@
 from flask import render_template, url_for, flash, redirect, request, Blueprint, session
 from flask_security import login_required, current_user, roles_required
-from app.customer.forms import UserForm
+from app.customer.forms import UserForm, StatsForm
 from app.customer.models import Customer
 from app.product.models import Product, ProductInventory
 from app.order.models import Order, OrderDetails
+from app.supply.models import SupplyBuys, Supply
 from app import db
 import json
 from app.creditcard import luhn
-from datetime import date
+from datetime import date, datetime, timedelta
 
 customer = Blueprint('customer', __name__,
                  template_folder='templates',
@@ -131,4 +132,26 @@ def validate():
 @login_required
 @roles_required('admin')
 def statistics():
-    return render_template('statistics.html', title='Statistics')
+    end_date = date.today()
+    start_date = date.today() - timedelta(days=30)
+    form = StatsForm()
+    if form.validate_on_submit():
+        start_date = form.start_date.data
+        end_date = form.end_date.data
+    elif request.method == 'POST':
+        form.end_date.data = end_date
+        form.start_date.data = start_date
+    expenses = SupplyBuys.query.filter(SupplyBuys.buy_date >= start_date).filter(SupplyBuys.buy_date <= end_date).order_by(SupplyBuys.buy_date.desc()).all()
+    incomes = Order.query.filter(Order.date >= start_date).filter(Order.date <= end_date).order_by(Order.date.desc()).all()
+    total_expenses = sum([i.total_cost for i in expenses])
+    total_income = sum([i.subtotal for i in incomes])
+    earnings = total_income - total_expenses
+    return render_template('statistics.html', 
+                           title='Statistics',
+                           expenses = expenses,
+                           incomes = incomes,
+                           total_expenses = total_expenses,
+                           total_income = total_income,
+                           earnings = earnings,
+                           form = form
+                           )

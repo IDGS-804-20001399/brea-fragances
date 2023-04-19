@@ -13,6 +13,7 @@
                 <th scope="col">ID</th>
                 <td>Date</td>
         <th scope="col">Payment Method</th>
+        <th scope="col">Subtotal</th>
         <th scope="col">Delivery cost</th>
         <th scope="col">Total</th>
         <th scope="col">Delivery Method</th>
@@ -27,8 +28,9 @@
                 <th scope="row">{{ order.id }}</th>
                 <td>{{ order.date }}</td>
                 <td>{{ order.payment }}</td>
-                <td>{{ order.delivery_fee }}</td>
-                <td>{{ order.total }}</td>
+                <td>{{ order.subtotal | moneyFormat }}</td>
+                <td>{{ order.delivery_fee | moneyFormat }}</td>
+                <td>{{ order.total | moneyFormat }}</td>
                 <td>{{ order.delivery_method }}</td>
                 <td>{{ order.status }}</td>
                 <td>

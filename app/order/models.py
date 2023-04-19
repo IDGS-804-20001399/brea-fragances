@@ -14,8 +14,12 @@ class Order(db.Model):
     details = db.relationship('OrderDetails', lazy=True, backref='order')
 
     @hybrid_property
-    def total(self):
+    def subtotal(self):
         return sum([i.price * i.quantity for i in self.details])
+
+    @hybrid_property
+    def total(self):
+        return self.subtotal + self.delivery_fee
 
 
 

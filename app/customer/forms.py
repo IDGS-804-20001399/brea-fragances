@@ -1,9 +1,14 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms.fields import StringField, PasswordField, SubmitField, BooleanField, DateField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, NumberRange
 from app import user_datastore
 from flask_security import current_user
 from app.auth.models import User
+
+class StatsForm(FlaskForm):
+    start_date = DateField('Start date',)
+    end_date = DateField('End date',)
+    submit = SubmitField('show')
 
 class UserForm(FlaskForm):
     names=StringField('Names', [DataRequired(message='Must not be empty')])
