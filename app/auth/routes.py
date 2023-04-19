@@ -55,7 +55,10 @@ def logout():
 @login_required
 @roles_required( 'admin')
 def users():
-    users = User.query.all()
+    customer_role = Role.query.filter_by(name='customer').first()
+    users = User.query.filter(~User.roles.contains(customer_role)).all()
+
+    print(users[0].roles)
     return render_template('users.html', title='Users', users=users)
 
 @auth.route('/add-user', methods=['GET', 'POST'])
