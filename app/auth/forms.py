@@ -40,3 +40,20 @@ class AdminForm(FlaskForm):
         if email.data != current_user.email:
             if user_datastore.get_user(email):
                 raise ValidationError('That email is already taken. Please choose a different one.')
+
+class EmailForm(FlaskForm):
+    email = StringField('Email',
+                        validators=[DataRequired(), Email()])
+    submit = SubmitField('Save')
+
+    def validate_email(self, email):
+        if email.data != current_user.email:
+            if user_datastore.get_user(email):
+                raise ValidationError('That email is already taken. Please choose a different one.')
+            
+class PasswordForm(FlaskForm):
+    current_password = PasswordField('Current password', validators=[DataRequired()])
+    new_password = PasswordField('New password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm password',
+                                     validators=[DataRequired(), EqualTo('new_password')])
+    submit = SubmitField('Save')
