@@ -89,7 +89,7 @@ def edit_user_role(user_id):
     roles = Role.query.all()
 
     if request.method=='POST':
-        user_datastore.remove_role_from_user(user.email, user.role)
+        user_datastore.remove_role_from_user(user.email, user.roles[0].name)
         user_datastore.add_role_to_user(user.email, request.form.get('role'))
         db.session.commit()
         flash('User saved successfully', 'success')

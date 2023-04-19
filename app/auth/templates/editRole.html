@@ -6,12 +6,12 @@
 {% from '_macros.html' import render_image_field%}
 
 <form method="POST"
-      action="/edit-user-role"
+      action=""
       class="row g-3"
       enctype="multipart/form-data"
       style="max-width: 50%; margin: auto;">
     {{ form.hidden_tag() }}
-    {{ render_field(form.email) }}
+    <!-- {{ render_field(form.email) }} -->
     <select name="role" id="role" class="form-select" aria-label="Role">
       <option selected disabled>Select</option>
       {% for role in roles %}
