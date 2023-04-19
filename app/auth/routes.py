@@ -1,5 +1,5 @@
 from flask import render_template, url_for, flash, redirect, request, Blueprint
-from app.auth.forms import LoginForm, RegistrationForm, AdminForm
+from app.auth.forms import LoginForm, RegistrationForm, AdminForm, EmailForm, PasswordForm
 from app.auth.models import User, Role
 from app.customer.models import Customer
 from flask_security.utils import encrypt_password, verify_password, login_user, logout_user
@@ -80,28 +80,59 @@ def add_user():
 
     return render_template('addUser.html', title='User', roles=roles, form=form)
 
-@auth.route('/edit-user/<int:user_id>', methods=["POST", "GET"])
+@auth.route('/edit-user-role/<int:user_id>', methods=["POST", "GET"])
 @login_required
 @roles_required('admin')
-def edit_user(user_id):
+def edit_user_role(user_id):
     form = AdminForm()
     user = User.query.get_or_404(user_id)
     roles = Role.query.all()
 
     if request.method=='POST':
-        if not user_datastore.get_user(form.email.data) and user.email != form.email.data:
+        user_datastore.remove_role_from_user(user.email, user.role)
+        user_datastore.add_role_to_user(user.email, request.form.get('role'))
+        db.session.commit()
+        flash('User saved successfully', 'success')
+        return redirect(url_for('auth.users'))
+    elif request.method == 'GET':
+        form.email.data = user.email
+    return render_template('editRole.html', title='User', roles=roles, form=form)
+
+@auth.route('/edit-user-email/<int:user_id>', methods=["POST", "GET"])
+@login_required
+@roles_required('admin')
+def edit_user_email(user_id):
+    form = EmailForm()
+    user = User.query.get_or_404(user_id)
+    roles = Role.query.all()
+
+    if request.method=='POST':
+        if form.validate_on_submit() and user.email != form.email.data:
             user.email = form.email.data
-            user.password = form.password.data
-            user_datastore.remove_role_from_user(form.email.data, user.role)
-            user_datastore.add_role_to_user(form.email.data, request.form.get('role'))
             db.session.commit()
-            flash('User saved successfully', 'success')
+            flash('Email changed successfully', 'success')
             return redirect(url_for('auth.users'))
         else:
             flash('This email is already taken', 'danger')
     elif request.method == 'GET':
         form.email.data = user.email
-    return render_template('addUser.html', title='User', roles=roles, form=form)
+    return render_template('editEmail.html', title='User', roles=roles, form=form)
+
+@auth.route('/edit-user-password/<int:user_id>', methods=["POST", "GET"])
+@login_required
+@roles_required('admin')
+def edit_user_password(user_id):
+    form = PasswordForm()
+    user = User.query.get_or_404(user_id)
+    roles = Role.query.all()
+    
+    if request.method=='POST':
+        if form.current_password.data == user.password and form.validate_on_submit():
+            user.password = form.new_password.data
+            db.session.commit()
+            flash('Password changed successfully', 'success')
+            return redirect(url_for('auth.users'))
+    return render_template('editPassword.html', title='User', roles=roles, form=form)
 
 @auth.route('/delete-user/<int:user_id>', methods=["POST"])
 @login_required
