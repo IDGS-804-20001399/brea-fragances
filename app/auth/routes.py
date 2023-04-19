@@ -3,7 +3,7 @@ from app.auth.forms import LoginForm, RegistrationForm, AdminForm, EmailForm, Pa
 from app.auth.models import User, Role
 from app.customer.models import Customer
 from flask_security.utils import encrypt_password, verify_password, login_user, logout_user
-from flask_security import login_required 
+from flask_security import login_required , current_user
 from app import user_datastore, db
 from flask_security import login_required, roles_required
 
@@ -98,12 +98,12 @@ def edit_user_role(user_id):
         form.email.data = user.email
     return render_template('editRole.html', title='User', roles=roles, form=form)
 
-@auth.route('/edit-user-email/<int:user_id>', methods=["POST", "GET"])
+@auth.route('/edit-user-email', methods=["POST", "GET"])
 @login_required
-@roles_required('admin')
-def edit_user_email(user_id):
+# @roles_required('admin')
+def edit_user_email():
     form = EmailForm()
-    user = User.query.get_or_404(user_id)
+    user = User.query.get_or_404(current_user.id)
     roles = Role.query.all()
 
     if request.method=='POST':
@@ -118,20 +118,24 @@ def edit_user_email(user_id):
         form.email.data = user.email
     return render_template('editEmail.html', title='User', roles=roles, form=form)
 
-@auth.route('/edit-user-password/<int:user_id>', methods=["POST", "GET"])
+@auth.route('/edit-user-password', methods=["POST", "GET"])
 @login_required
-@roles_required('admin')
-def edit_user_password(user_id):
+# @roles_required('admin')
+def edit_user_password():
     form = PasswordForm()
-    user = User.query.get_or_404(user_id)
+    user = User.query.get_or_404(current_user.id)
     roles = Role.query.all()
     
     if request.method=='POST':
-        if form.current_password.data == user.password and form.validate_on_submit():
-            user.password = form.new_password.data
-            db.session.commit()
-            flash('Password changed successfully', 'success')
-            return redirect(url_for('auth.users'))
+        if form.validate_on_submit():
+            if verify_password(form.current_password.data, user.password):
+                encrypted_password = encrypt_password(form.new_password.data)
+                user.password = encrypted_password
+                db.session.commit()
+                flash('Password changed successfully', 'success')
+                return redirect(url_for('auth.users'))
+            else:
+                flash('Current password is invalid', 'danger')
     return render_template('editPassword.html', title='User', roles=roles, form=form)
 
 @auth.route('/delete-user/<int:user_id>', methods=["POST"])
