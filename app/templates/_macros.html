@@ -46,7 +46,8 @@
 {% if messages %}
 {% for category, message in messages %}
 <div class="alert alert-{{ category }} alert-dismissible fade show"
-     role="alert" style="max-width: 50%; margin: auto; margin-bottom: 20px;">
+     role="alert"
+     style="max-width: 50%; margin: auto; margin-bottom: 20px;">
   {{ message }}
   <button type="button"
           class="btn-close"
@@ -60,7 +61,7 @@
 
 {% macro navbar() %}
 <style>
-  .btn-user:hover{
+  .btn-user:hover {
     animation: flip;
     animation-duration: 0.5s;
   }
@@ -68,7 +69,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand"
-       href="/"><img src="/static/images/bf-logo-nobg.png" alt="" width="60" height="50"></a>
+       href="/"><img src="/static/images/bf-logo-nobg.png"
+           alt=""
+           width="60"
+           height="50"></a>
     <button class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -144,40 +148,108 @@
             </li>
             <li>
               <a class="dropdown-item"
-              href="{{ url_for('supplier.suppliers') }}">Suppliers</a>
+                 href="{{ url_for('supplier.suppliers') }}">Suppliers</a>
             </li>
             <li>
               <a class="dropdown-item"
-              href="{{ url_for('supply.supplies') }}">Supplies</a>
+                 href="{{ url_for('supply.supplies') }}">Supplies</a>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
             <li>
               <a class="dropdown-item"
-              href="{{ url_for('order.orders') }}">Orders</a>
+                 href="{{ url_for('order.orders') }}">Orders</a>
             </li>
             <li>
               <a class="dropdown-item"
-              href="{{ url_for('order.customers') }}">Customers</a>
+                 href="{{ url_for('order.customers') }}">Customers</a>
             </li>
             <li>
               <a class="dropdown-item"
-              href="{{ url_for('customer.statistics') }}">Statistics</a>
+                 href="{{ url_for('customer.statistics') }}">Statistics</a>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
             <li><a class="dropdown-item"
-              href="{{ url_for('auth.logout') }}">Logout</a></li>
+                 href="{{ url_for('auth.logout') }}">Logout</a></li>
+          </ul>
+        </li>
+        {% endif %}
+
+        {% if current_user.is_authenticated and current_user.has_role('seller')%}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"
+             href="#"
+             id="navbarDropdown"
+             role="button"
+             data-bs-toggle="dropdown"
+             aria-expanded="false">
+            Seller
+          </a>
+          <ul class="dropdown-menu"
+              aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item"
+                 href="{{ url_for('order.orders') }}">Orders</a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item"
+                 href="{{ url_for('auth.logout') }}">Logout</a></li>
+          </ul>
+        </li>
+        {% endif %}
+
+        {% if current_user.is_authenticated and current_user.has_role('stocker')%}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle"
+             href="#"
+             id="navbarDropdown"
+             role="button"
+             data-bs-toggle="dropdown"
+             aria-expanded="false">
+            Stocker
+          </a>
+          <ul class="dropdown-menu"
+              aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item"
+                 href="{{ url_for('product.products') }}">Products
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item"
+                 href="{{ url_for('supply.supplies') }}">Supplies</a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item"
+                 href="{{ url_for('auth.logout') }}">Logout</a></li>
           </ul>
         </li>
         {% endif %}
       </ul>
       <div class="d-flex">
-        <form action="{{ url_for('product.search') }}" method="post" class="input-group mb-3" style="margin-right: 10px;">
-          <input type="text" name="search" class="form-control" placeholder="Search Products" aria-label="Search Products" aria-describedby="button-addon2">
-          <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-search"></i></button>
+        <form action="{{ url_for('product.search') }}"
+              method="post"
+              class="input-group mb-3"
+              style="margin-right: 10px;">
+          <input type="text"
+                 name="search"
+                 class="form-control"
+                 placeholder="Search Products"
+                 aria-label="Search Products"
+                 aria-describedby="button-addon2">
+          <button class="btn btn-outline-secondary"
+                  type="submit"
+                  id="button-addon2"><i class="fa fa-search"></i></button>
         </form>
         {% if current_user.is_authenticated and current_user.has_role('customer')%}
         <a style="margin-right: 10px; max-height: 38px; min-width: 50px;"

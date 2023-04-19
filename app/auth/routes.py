@@ -18,12 +18,8 @@ def loginFunc():
         if user:
             if verify_password(form.password.data, user.password):
                 login_user(user, form.remember.data)
-                if user.has_role('admin'):
-                    index = 'home.index'
-                else:
-                    index = 'customer.index'
                 next_page = request.args.get('next')
-                return redirect(next_page) if next_page else redirect(url_for(index))
+                return redirect(next_page) if next_page else redirect(url_for('home.index'))
             else:
                 flash('Wrong password. Please try again', 'danger')
         else:

@@ -4,7 +4,8 @@
 
 {% from '_macros.html' import render_field %}
 
-<div class="contaner"style="margin-bottom: 5%; max-width: 75%; margin-left:auto; margin-right:auto; ">
+<div class="contaner"
+     style="margin-bottom: 5%; max-width: 75%; margin-left:auto; margin-right:auto; ">
 
 
     <table class="table table-hover">
@@ -12,18 +13,18 @@
             <tr class="table-secondary">
                 <th scope="col">ID</th>
                 <td>Date</td>
-        <th scope="col">Payment Method</th>
-        <th scope="col">Subtotal</th>
-        <th scope="col">Delivery cost</th>
-        <th scope="col">Total</th>
-        <th scope="col">Delivery Method</th>
-        <th scope="col">Status</th>
-        <th scope="col">Options</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% if orders %}
-        {% for order in orders %}
+                <th scope="col">Payment Method</th>
+                <th scope="col">Subtotal</th>
+                <th scope="col">Delivery cost</th>
+                <th scope="col">Total</th>
+                <th scope="col">Delivery Method</th>
+                <th scope="col">Status</th>
+                <th scope="col">Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if orders %}
+            {% for order in orders %}
             <tr class="table-secondary">
                 <th scope="row">{{ order.id }}</th>
                 <td>{{ order.date }}</td>
@@ -34,27 +35,26 @@
                 <td>{{ order.delivery_method }}</td>
                 <td>{{ order.status }}</td>
                 <td>
-                    <form action="/order/admin-order-details" method="POST" >
-                        <input type="hidden" value="{{ order.id }}" name="order_id" id="order_id">
-                        <button type="submit" class="btn btn-outline-dark"><i class="fa fa-eye"></i> See details</button>
-                    </form>
+                    <a href="{{ url_for('order.adminOrderDetails', order_id =  order.id ) }}"
+                       class="btn btn-outline-dark"><i class="fa fa-eye"></i> See details</a>
                 </td>
             </tr>
-        {% endfor %}
-    {% else %}
-    <tr class="table-secondary">
-        <th scope="row">--</th>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td><a href="" class="btn btn-outline-dark">--</a></td>
-    </tr>
-    {% endif %}
-    </tbody>
-</table>
+            {% endfor %}
+            {% else %}
+            <tr class="table-secondary">
+                <th scope="row">--</th>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td><a href=""
+                       class="btn btn-outline-dark">--</a></td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
 
 </div>
 {% endblock body %}

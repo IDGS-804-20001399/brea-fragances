@@ -1,7 +1,7 @@
 import os
 from flask import (render_template, url_for, flash, redirect, 
                     request, Blueprint)
-from flask_security import login_required, roles_required
+from flask_security import login_required, roles_required, roles_accepted
 from app.supply.forms import SupplyForm, BuySupplyForm
 from app.supply.models import Supply, SupplyBuys
 from app import supply_pics, db
@@ -13,7 +13,7 @@ supply = Blueprint('supply', __name__,
 
 @supply.route('/supplies')
 @login_required
-@roles_required('admin')
+@roles_accepted('admin', 'stocker')
 def supplies():
     supplies = Supply.query.all()
     return render_template('supplies.html', title='Supplies', supplies=supplies)
@@ -21,7 +21,7 @@ def supplies():
 
 @supply.route('/buy-supply/<int:supply_id>', methods=["POST", "GET"])
 @login_required
-@roles_required('admin')
+@roles_accepted('admin', 'stocker')
 def buy_supply(supply_id):
     form = BuySupplyForm()
     supply = Supply.query.get_or_404(supply_id)
@@ -43,7 +43,7 @@ def buy_supply(supply_id):
 
 @supply.route('/supply-details/<int:supply_id>', methods=["POST", "GET"])
 @login_required
-@roles_required('admin')
+@roles_accepted('admin', 'stocker')
 def details(supply_id):
     supply = Supply.query.get_or_404(supply_id)
     return render_template('supplyDetails.html', 
@@ -53,7 +53,7 @@ def details(supply_id):
 
 @supply.route('/add-supply', methods=["POST", "GET"])
 @login_required
-@roles_required('admin')
+@roles_accepted('admin', 'stocker')
 def add_supply():
     form=SupplyForm()
     default_image = url_for('static', filename='images/preview.png')
@@ -86,7 +86,7 @@ def add_supply():
 
 @supply.route('/edit-supply/<int:supply_id>', methods=["POST", "GET"])
 @login_required
-@roles_required('admin')
+@roles_accepted('admin', 'stocker')
 def edit_supply(supply_id):
     supply = Supply.query.get_or_404(supply_id)
     form = SupplyForm()
@@ -125,7 +125,7 @@ def edit_supply(supply_id):
 
 @supply.route('/delete-supply/<int:supply_id>', methods=["POST"])
 @login_required
-@roles_required('admin')
+@roles_accepted('admin', 'stocker')
 def delete_supply(supply_id):
     supply = Supply.query.get_or_404(supply_id)
     previos_image_path = supply_pics.path(supply.image_filename)
@@ -140,7 +140,7 @@ def delete_supply(supply_id):
 
 @supply.route('/supply-inventory/<int:supply_id>', methods=["POST", "GET"])
 @login_required
-@roles_required('admin')
+@roles_accepted('admin', 'stocker')
 def inventory(supply_id):
     supply = Supply.query.get_or_404(supply_id)
     return render_template('inventory.html', 
@@ -149,7 +149,7 @@ def inventory(supply_id):
 
 @supply.route('/buys/<int:supply_id>', methods=["POST", "GET"])
 @login_required
-@roles_required('admin')
+@roles_accepted('admin', 'stocker')
 def buys(supply_id):
     supply = Supply.query.get_or_404(supply_id)
     return render_template('buys.html', 

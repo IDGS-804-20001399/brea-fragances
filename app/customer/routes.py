@@ -41,7 +41,8 @@ def index():
 @login_required
 @roles_required('customer')
 def myOrders():
-    return render_template('myOrders.html', title='My Orders')
+    orders = Order.query.filter_by(user_id = current_user.id).all()
+    return render_template('orders.html', title='My Orders', orders=orders)
 
 @customer.route('/cart', methods=["POST", "GET"])
 @login_required

@@ -1,6 +1,7 @@
 from app import db
 from sqlalchemy.ext.hybrid import hybrid_property
 from datetime import datetime
+from app.customer.models import Customer
 
 class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -12,6 +13,10 @@ class Order(db.Model):
     user = db.relationship('User', lazy=True, uselist=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     details = db.relationship('OrderDetails', lazy=True, backref='order')
+
+    @hybrid_property
+    def customer(self):
+        return Customer.query.filter_by(user_id=self.user_id).first()
 
     @hybrid_property
     def subtotal(self):

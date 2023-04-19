@@ -1,7 +1,7 @@
 import os, json
 from flask import (render_template, url_for, flash, redirect, 
                     request, Blueprint)
-from flask_security import login_required, roles_required
+from flask_security import login_required, roles_required, roles_accepted
 from sqlalchemy import text
 from app.product.forms import ProductForm, MakeForm
 from app.product.models import Product, ProductSupplies, ProductInventory
@@ -17,7 +17,7 @@ product = Blueprint('product', __name__,
 
 @product.route('/products')
 @login_required
-@roles_required('admin')
+@roles_accepted('admin', 'stocker')
 def products():
     products = Product.query.all()
     return render_template('products.html', title='Products', products=products)
@@ -25,7 +25,7 @@ def products():
 
 @product.route('/add-product', methods=["POST", "GET"])
 @login_required
-@roles_required('admin')
+@roles_accepted('admin', 'stocker')
 def add_product():
     form=ProductForm()
     default_image = url_for('static', filename='images/preview.png')
@@ -75,7 +75,7 @@ def add_product():
 
 @product.route('/edit-product/<int:product_id>', methods=["POST", "GET"])
 @login_required
-@roles_required('admin')
+@roles_accepted('admin', 'stocker')
 def edit_product(product_id):
     # rewrite query to include amount and checked state in supplies object and
     # add it to the template, so no extra code in needed in the frontend nor
@@ -138,7 +138,7 @@ def edit_product(product_id):
 
 @product.route('/delete-product/<int:product_id>', methods=["POST"])
 @login_required
-@roles_required('admin')
+@roles_accepted('admin', 'stocker')
 def delete_product(product_id):
     product = Product.query.get_or_404(product_id)
     previos_image_path = product_pics.path(product.image_filename)
@@ -167,7 +167,7 @@ def search():
 
 @product.route('/product-details/<int:product_id>', methods=["POST", "GET"])
 @login_required
-@roles_required('admin')
+@roles_accepted('admin', 'stocker')
 def details(product_id):
     product = Product.query.get_or_404(product_id)
     return render_template('productDetails.html', 
@@ -177,7 +177,7 @@ def details(product_id):
 
 @product.route('/product-make/<int:product_id>', methods=["POST", "GET"])
 @login_required
-@roles_required('admin')
+@roles_accepted('admin', 'stocker')
 def make(product_id):
     product = Product.query.get_or_404(product_id)
     form = MakeForm()
@@ -227,21 +227,21 @@ def make(product_id):
 
 @product.route('/product-info/<int:product_id>', methods=["POST", "GET"])
 @login_required
-@roles_required('admin')
+@roles_accepted('admin', 'stocker')
 def productInfo(product_id):
     product = Product.query.get_or_404(product_id)
     return render_template('singleProduct.html', title='Details', product=product)
 
 @product.route('/product-inventory/<int:product_id>', methods=["POST", "GET"])
 @login_required
-@roles_required('admin')
+@roles_accepted('admin', 'stocker')
 def product_inventory(product_id):
     product = Product.query.get_or_404(product_id)
     return render_template('productInventory.html', title='Inventory', product=product)
 
 @product.route('/production/<int:product_id>', methods=["POST", "GET"])
 @login_required
-@roles_required('admin')
+@roles_accepted('admin', 'stocker')
 def product_production(product_id):
     product = Supply.query.get_or_404(product_id)
     return render_template('production.html', 

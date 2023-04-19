@@ -13,14 +13,13 @@ def index():
 
 @home.route('/products')
 @login_required
-@roles_accepted('customer', 'admin')
 def products():
     products = Product.query.all()
     return render_template('allProducts.html', title='Products', products=products)
 
 @home.route('/add/<int:product_id>', methods=['POST'])
 @login_required
-@roles_accepted('customer', 'admin')
+@roles_accepted('customer')
 def add(product_id):
     cart = session.get('cart')
     product = Product.query.get(product_id).__dict__
@@ -40,7 +39,7 @@ def add(product_id):
 
 @home.route('/edit-quantity/<int:product_id>', methods=['POST'])
 @login_required
-@roles_accepted('customer', 'admin')
+@roles_accepted('customer')
 def edit_quantity(product_id):
     cart = session.get('cart')
     if cart:
@@ -52,7 +51,7 @@ def edit_quantity(product_id):
 
 @home.route('/remove/<int:product_id>', methods=['GET'])
 @login_required
-@roles_accepted('customer', 'admin')
+@roles_accepted('customer')
 def remove(product_id):
     cart = session.get('cart')
     if cart:
