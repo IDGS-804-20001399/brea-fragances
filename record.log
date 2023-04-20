@@ -358,3 +358,13 @@ INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:53:19] "[36mGET /static/images/bf-l
 INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:53:19] "[36mGET /_uploads/products/1_1.jpg HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:53:19] "[36mGET /_uploads/supplies/3_1.jpg HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:53:19] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:54:18] "GET /admin/product-details/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:54:18] "[36mGET /_uploads/supplies/1_3.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:54:18] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:54:18] "[36mGET /_uploads/products/1_1.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:54:18] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:54:18] "[36mGET /_uploads/supplies/2_2.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:54:18] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:54:18] "[36mGET /_uploads/supplies/3_1.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:54:18] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:54:18] "[36mGET /static/images/bf-logo-white.png HTTP/1.1[0m" 304 -
