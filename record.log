@@ -368,3 +368,9 @@ INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:54:18] "[36mGET /static/css/admin.c
 INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:54:18] "[36mGET /_uploads/supplies/3_1.jpg HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:54:18] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
 INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:54:18] "[36mGET /static/images/bf-logo-white.png HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\hayab\\PythonCurso\\brea-fragances\\app\\order\\routes.py', reloading
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 125-189-024
+INFO:werkzeug: * Detected change in 'C:\\Users\\hayab\\PythonCurso\\brea-fragances\\app\\order\\routes.py', reloading
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 125-189-024
