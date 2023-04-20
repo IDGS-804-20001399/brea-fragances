@@ -35,5 +35,6 @@ def customers():
 @login_required
 @roles_required('admin')
 def customerDetails(customer_id):
-    order = Order.query.filter_by(user_id=customer_id).first()
-    return render_template('ordersDetails.html', title='Order details', order=order)
+    customer = Customer.query.get_or_404(customer_id)
+    orders = Order.query.filter_by(user_id=customer.user.id).all()
+    return render_template('orders.html', title='Customer Orders', orders=orders)
