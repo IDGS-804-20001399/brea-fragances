@@ -109,16 +109,18 @@
           <ul class="dropdown-menu"
               aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item"
-                 href="{{ url_for('customer.index') }}">My Info</a></li>
-            <li>
-              <hr class="dropdown-divider">
+                 href="{{ url_for('customer.index') }}">My Info</a>
             </li>
             <li><a class="dropdown-item"
-                 href="{{ url_for('customer.myOrders') }}">My Orders</a></li>
+                 href="{{ url_for('customer.myOrders') }}">My Orders</a>
+            </li>
             <li>
               <a class="dropdown-item"
                  href="{{ url_for('auth.edit_user_password') }}">Edit my password</a>
             </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>            
             <li><a class="dropdown-item"
                  href="{{ url_for('auth.logout') }}">Logout</a></li>
           </ul>

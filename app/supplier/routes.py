@@ -46,17 +46,18 @@ def add_supplier():
 def edit_supplier(supplier_id):
     supplier = Supplier.query.get_or_404(supplier_id)
     form = SupplierForm()
-    default_image = supplier.image_url
     if form.validate_on_submit():
         supplier.name = form.name.data
-        supplier.contact = form.contact.data
+        supplier.email = form.email.data
+        supplier.phone = form.phone.data
         supplier.product = form.product.data
         db.session.commit()
         flash('Supplier saved successfully', 'success')
         return redirect(url_for('supplier.supplies'))
     elif request.method == 'GET':
         form.name.data = supplier.name
-        form.contact.data = supplier.contact
+        form.email.data = supplier.email
+        form.phone.data = supplier.phone
         form.product.data = supplier.product
     return render_template('addSupplier.html', title='Edit supplier', form=form)
 

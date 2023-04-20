@@ -18,11 +18,13 @@
         {{ form.submit(class="btn btn-warning") }}
     </form>
 
-    {% if earnings >= 0 %}
-    <h2 style="color: whitesmoke;">Ganancias: <span class="text-success">{{ earnings | moneyFormat}}</span></h2>
+    <div style="margin: 25px 0 20px 0;">
+        {% if earnings >= 0 %}
+        <span style="border-radius: 20px; background-color: white; padding: 5px 10px 5px 10px;">Ganancias:</span> <span style="border-radius: 20px; background-color: white; padding: 5px 10px 5px 10px;" class="text-success">{{ earnings | moneyFormat}}</span></h2>
     {% else %}
-    <h2 style="color: whitesmoke;">perdidas: <span class="text-danger">{{ earnings | moneyFormat}}</span></h2>
+    <h2><span style="border-radius: 20px; background-color: white; padding: 5px 10px 5px 10px;">Pérdidas:</span> <span style="border-radius: 20px; background-color: white; padding: 5px 10px 5px 10px;" class="text-danger">{{ earnings | moneyFormat}}</span></h2>
     {% endif %}
+    </div>
 
     <h2 style="color: whitesmoke;">Sells</h2>
     <table class="table table-hover">
