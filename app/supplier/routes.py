@@ -1,7 +1,7 @@
 import os
 from flask import (render_template, url_for, flash, redirect, 
-                    request, Blueprint)
-from flask_security import login_required, roles_required
+                    request, Blueprint, current_app)
+from flask_security import login_required, roles_required, current_user
 from app.supplier.forms import SupplierForm
 from app.supplier.models import Supplier
 from app import db
@@ -33,6 +33,7 @@ def add_supplier():
             )
             db.session.add(supplier)
             db.session.commit()
+            current_app.logger.critical(f"SUPPLIER {supplier.name} ADDED BY {current_user.email}")
             flash('Supplier saved successfully', 'success')
             return redirect(url_for("supplier.supplies"))
         else:
@@ -53,6 +54,7 @@ def edit_supplier(supplier_id):
         supplier.product = form.product.data
         db.session.commit()
         flash('Supplier saved successfully', 'success')
+        current_app.logger.critical(f"SUPPLIER {supplier.name} MODIFIED BY {current_user.email}")
         return redirect(url_for('supplier.supplies'))
     elif request.method == 'GET':
         form.name.data = supplier.name
@@ -69,5 +71,6 @@ def delete_supplier(supplier_id):
     supplier = Supplier.query.get_or_404(supplier_id)
     db.session.delete(supplier)
     db.session.commit()
+    current_app.logger.critical(f"SUPPLIER {supplier.name} DELETED BY {current_user.email}")
     flash('Supplier deleted successfully', 'success')
     return redirect(url_for('supplier.supplies'))

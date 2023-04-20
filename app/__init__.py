@@ -4,8 +4,10 @@ from flask_security import Security, SQLAlchemyUserDatastore, utils
 from flask_uploads import UploadSet, configure_uploads, IMAGES
 from flask_session import Session
 from app.config import Config
-import os
+import os, logging
 
+logging.basicConfig(filename='record.log',
+                level=logging.CRITICAL)
 db = SQLAlchemy()
 product_pics =  UploadSet('products', IMAGES, lambda app: os.path.join(app.root_path, 'static/images/products'))
 supply_pics =  UploadSet('supplies', IMAGES, lambda app: os.path.join(app.root_path, 'static/images/supplies'))

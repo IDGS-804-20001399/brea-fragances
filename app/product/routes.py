@@ -1,7 +1,7 @@
 import os, json
 from flask import (render_template, url_for, flash, redirect, 
-                    request, Blueprint)
-from flask_security import login_required, roles_required, roles_accepted
+                    request, Blueprint, current_app)
+from flask_security import login_required, roles_required, roles_accepted, current_user
 from sqlalchemy import text
 from app.product.forms import ProductForm, MakeForm
 from app.product.models import Product, ProductSupplies, ProductInventory
@@ -62,6 +62,7 @@ def add_product():
                     product.image_filename = image_filename
                     product.image_url = image_url
                     db.session.commit()
+                    current_app.logger.critical(f"PRODUCT {product.name} ADDED BY {current_user.email}")
                     flash('Product saved successfully', 'success')
                     return redirect(url_for("product.products"))
                 else:
@@ -123,6 +124,7 @@ def edit_product(product_id):
                     product.image_url = image_url
 
                 db.session.commit()
+                current_app.logger.critical(f"PRODUCT {product.name} MODIFIED BY {current_user.email}")
                 flash('Product saved successfully', 'success')
                 return redirect(url_for('product.products'))
             else:
@@ -148,6 +150,7 @@ def delete_product(product_id):
         pass
     db.session.delete(product)
     db.session.commit()
+    current_app.logger.critical(f"PRODUCT {product.name} DELETED BY {current_user.email}")
     flash('Product deleted successfully', 'success')
     return redirect(url_for('product.products'))
 
@@ -211,6 +214,7 @@ def make(product_id):
                     db.session.commit()
                     index += 1
             flash('Product made successfully', 'success')
+            current_app.logger.critical(f"PRODUCT {product.name} MADE BY {current_user.email}")
             return redirect(url_for('product.details', product_id=product_id))
         else:
             flash('Not enough supplies to produce that amount of product', 'danger')
@@ -243,7 +247,7 @@ def product_inventory(product_id):
 @login_required
 @roles_accepted('admin', 'stocker')
 def product_production(product_id):
-    product = Supply.query.get_or_404(product_id)
+    product = Product.query.get_or_404(product_id)
     return render_template('production.html', 
                            title='Production', 
                            product=product,)

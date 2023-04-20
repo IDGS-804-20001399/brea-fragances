@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request, Blueprint, session
+from flask import render_template, url_for, flash, redirect, request, Blueprint, session, current_app
 from flask_security import login_required, current_user, roles_required
 from app.customer.forms import UserForm, StatsForm
 from app.customer.models import Customer
@@ -69,6 +69,15 @@ def cart():
             for product in cart:
                 product_id = product['product']['id']
                 quantity = product['quantity']
+                p = Product.query.get(product_id)
+                if p.stock < quantity:
+                    for detail in order.details:
+                        db.session.delete(detail)
+                        db.session.commit()
+                    db.session.delete(order)
+                    db.session.commit()
+                    flash('Not enough stock to process your order :(', 'danger')
+                    return redirect(url_for('customer.cart'))
                 detail = OrderDetails(
                     order_id = order.id,
                     product_id = product_id,
@@ -78,7 +87,6 @@ def cart():
                 db.session.add(detail)
                 db.session.commit()
                 #discounting from inventory
-                p = Product.query.get(product_id)
                 makes = p.makes.filter(ProductInventory.expiration_date > date.today()).order_by(ProductInventory.expiration_date).all()
                 index = 0
                 remaining = quantity
@@ -98,6 +106,7 @@ def cart():
 
 
                 cart = []
+                current_app.logger.critical(f"USER {current_user.email} MADE A BUY")
                 flash("Order made successfully", 'success')
         else:
             flash("Card number is invalid", 'danger')

@@ -28,7 +28,7 @@
         <tbody>
             <tr class="table-secondary">
                 <td>{{ product.name }}</td>
-                <td>{{ product.price }}</td>
+                <td>{{ product.price | moneyFormat }}</td>
                 <td>
                     <img height="100px"
                          src="{{ product.image_url }}">
