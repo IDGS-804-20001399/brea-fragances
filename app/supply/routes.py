@@ -1,7 +1,7 @@
 import os
 from flask import (render_template, url_for, flash, redirect, 
-                    request, Blueprint)
-from flask_security import login_required, roles_required, roles_accepted
+                    request, Blueprint, current_app)
+from flask_security import login_required, roles_required, roles_accepted, current_user
 from app.supply.forms import SupplyForm, BuySupplyForm
 from app.supply.models import Supply, SupplyBuys
 from app import supply_pics, db
@@ -34,6 +34,7 @@ def buy_supply(supply_id):
                          supply_id=supply_id)
         db.session.add(buy)
         db.session.commit()
+        current_app.logger.critical(f"SUPPLY {supply.name} BOUGHT BY {current_user.email}")
         flash('Supply bought successfully', 'success')
         return redirect(url_for("supply.details", supply_id=supply_id))
 
@@ -78,6 +79,7 @@ def add_supply():
             supply.image_url = image_url
             db.session.commit()
             flash('Supply saved successfully', 'success')
+            current_app.logger.critical(f"SUPPLY {supply.name} ADDED BY {current_user.email}")
             return redirect(url_for("supply.supplies"))
         else:
             flash('Please select an image', 'danger')
@@ -112,6 +114,7 @@ def edit_supply(supply_id):
             supply.image_filename = image_filename
             supply.image_url = image_url
         db.session.commit()
+        current_app.logger.critical(f"SUPPLY {supply.name} MODIFY BY {current_user.email}")
         flash('Supply saved successfully', 'success')
         return redirect(url_for('supply.supplies'))
     elif request.method == 'GET':
@@ -135,6 +138,7 @@ def delete_supply(supply_id):
         pass
     db.session.delete(supply)
     db.session.commit()
+    current_app.logger.critical(f"SUPPLY {supply.name} DELETED BY {current_user.email}")
     flash('Supply deleted successfully', 'success')
     return redirect(url_for('supply.supplies'))
 

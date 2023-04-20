@@ -1,0 +1,24 @@
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 18:56:11] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 18:56:11] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 18:56:11] "GET /static/images/bf-logo-nobg.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 18:56:11] "GET /static/images/bf-logo.svg HTTP/1.1" 200 -
+CRITICAL:app:USER admin@gmail.com LOGGED IN
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 18:56:24] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 18:56:24] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 18:56:25] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 18:56:25] "[36mGET /static/images/car1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 18:56:25] "[36mGET /_uploads/products/1_1.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 18:56:25] "[36mGET /static/images/car3.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 18:56:25] "[36mGET /static/images/car2.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 18:56:25] "[36mGET /_uploads/products/3.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 18:56:25] "[36mGET /_uploads/products/2_2.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 18:56:25] "[36mGET /_uploads/products/4_1.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 18:56:25] "[36mGET /_uploads/products/5.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 18:56:25] "[36mGET /static/images/carousels/Pink%20Death.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 18:56:25] "[36mGET /static/images/carousels/The%20charro%20negro.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 18:56:25] "[36mGET /static/images/carousels/Catrin%20fragrance.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 18:56:25] "[36mGET /static/images/carousels/Catrina%20fragrance.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 18:56:25] "GET /static/images/banner.jpg HTTP/1.1" 200 -

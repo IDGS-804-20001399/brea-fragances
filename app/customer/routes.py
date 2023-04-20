@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request, Blueprint, session
+from flask import render_template, url_for, flash, redirect, request, Blueprint, session, current_app
 from flask_security import login_required, current_user, roles_required
 from app.customer.forms import UserForm, StatsForm
 from app.customer.models import Customer
@@ -106,6 +106,7 @@ def cart():
 
 
                 cart = []
+                current_app.logger.critical(f"USER {current_user.email} MADE A BUY")
                 flash("Order made successfully", 'success')
         else:
             flash("Card number is invalid", 'danger')
