@@ -50,7 +50,7 @@ def signupFunc():
 @auth.route('/logout')
 @login_required
 def logout():
-    current_app.logger.critical(f"USER {user.email} LOGGED OUT")
+    current_app.logger.critical(f"USER {current_user.email} LOGGED OUT")
     logout_user()
     return redirect(url_for('auth.loginFunc'))
 
