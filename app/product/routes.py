@@ -247,7 +247,7 @@ def product_inventory(product_id):
 @login_required
 @roles_accepted('admin', 'stocker')
 def product_production(product_id):
-    product = Supply.query.get_or_404(product_id)
+    product = Product.query.get_or_404(product_id)
     return render_template('production.html', 
                            title='Production', 
                            product=product,)
