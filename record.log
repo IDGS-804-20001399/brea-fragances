@@ -313,3 +313,331 @@ INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:18:59] "[36mGET /static/css/admin.c
 INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:18:59] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:18:59] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
 INFO:werkzeug:127.0.0.1 - - [19/Apr/2023 20:18:59] "[33mGET /order/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 879-856-102
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 879-856-102
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:08] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:08] "GET /static/images/carousels/The%20charro%20negro.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:08] "GET /static/images/carousels/Pink%20Death.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:08] "GET /static/images/carousels/Catrin%20fragrance.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:08] "GET /static/images/bf-logo-nobg.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:08] "GET /static/images/car3.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:08] "GET /static/images/banner.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:08] "GET /static/images/carousels/Catrina%20fragrance.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:08] "GET /static/images/car1.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:08] "GET /static/images/car2.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:08] "GET /static/images/bf-logo-white.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:17] "GET /signup HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:17] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:17] "GET /static/images/bf-logo.svg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:20] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:20] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:20] "[36mGET /static/images/bf-logo.svg HTTP/1.1[0m" 304 -
+CRITICAL:app:USER admin@gmail.com LOGGED IN
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:30] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:30] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:30] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:30] "[36mGET /static/images/car1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:30] "[36mGET /static/images/car2.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:30] "[36mGET /static/images/car3.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:30] "[36mGET /static/images/carousels/The%20charro%20negro.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:30] "[36mGET /static/images/carousels/Pink%20Death.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:30] "[36mGET /static/images/carousels/Catrin%20fragrance.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:30] "[36mGET /static/images/carousels/Catrina%20fragrance.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:30] "[36mGET /static/images/banner.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:37] "GET /users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:37] "GET /static/css/admin.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:37] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:37] "GET /static/js/admin.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:37] "GET /static/images/background-Admin.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:40] "GET /add-user HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:40] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:40] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:40] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Aug/2023 20:04:40] "[36mGET /static/images/background-Admin.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 879-856-102
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:15:06] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:15:07] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:15:07] "[36mGET /static/images/car1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:15:07] "GET /static/images/banner.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:15:07] "[36mGET /static/images/carousels/Catrina%20fragrance.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:15:07] "[36mGET /static/images/car2.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:15:07] "[36mGET /static/images/car3.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:15:07] "[36mGET /static/images/carousels/Pink%20Death.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:15:07] "[36mGET /static/images/carousels/The%20charro%20negro.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:15:07] "[36mGET /static/images/carousels/Catrin%20fragrance.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:15:15] "GET /admin/products HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:15:15] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:15:15] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:15:15] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:15:15] "[36mGET /static/images/background-Admin.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:15:18] "[35m[1mGET /admin/add-product HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:15:18] "GET /admin/add-product?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:15:18] "GET /admin/add-product?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:15:18] "GET /admin/add-product?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:15:18] "GET /admin/add-product?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:26] "GET /admin/add-product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:26] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:26] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:26] "[36mGET /static/images/background-Admin.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:26] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:26] "GET /static/images/preview.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:50] "POST /admin/add-product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:50] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:50] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:50] "[36mGET /static/images/background-Admin.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:50] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:50] "[36mGET /static/images/preview.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:56] "GET /admin/supplies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:56] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:56] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:56] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:56] "[36mGET /static/images/background-Admin.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:58] "GET /admin/add-supply HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:58] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:58] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:58] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:58] "[36mGET /static/images/preview.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:17:58] "[36mGET /static/images/background-Admin.jpg HTTP/1.1[0m" 304 -
+CRITICAL:app:SUPPLY test ADDED BY admin@gmail.com
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:18:15] "[32mPOST /admin/add-supply HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:18:15] "GET /admin/supplies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:18:15] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:18:15] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:18:16] "[36mGET /static/images/background-Admin.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:18:16] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:18:16] "GET /_uploads/supplies/1_4.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:18:18] "GET /products HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:18:18] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:18:22] "GET /admin/products HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:18:22] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:18:22] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:18:22] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:18:22] "[36mGET /static/images/background-Admin.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:18:23] "GET /admin/add-product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:18:23] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:18:23] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:18:23] "[36mGET /static/images/background-Admin.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:18:23] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:18:23] "[36mGET /static/images/preview.png HTTP/1.1[0m" 304 -
+CRITICAL:app:PRODUCT test ADDED BY admin@gmail.com
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:19:02] "[32mPOST /admin/add-product HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:19:02] "GET /admin/products HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:19:02] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:19:02] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:19:02] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:19:02] "[36mGET /static/images/background-Admin.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:19:02] "GET /_uploads/products/1_2.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:19:04] "GET /admin/edit-product/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:19:04] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:19:04] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:19:05] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:19:05] "[36mGET /_uploads/products/1_2.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [10/Aug/2023 17:19:05] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 879-856-102
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:42] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:42] "[36mGET /static/images/car2.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:42] "GET /_uploads/products/1_2.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:42] "GET /static/images/bf-logo-nobg.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:42] "[36mGET /static/images/car1.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:42] "GET /static/images/banner.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:42] "[36mGET /static/images/car3.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:42] "[36mGET /static/images/carousels/The%20charro%20negro.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:42] "[36mGET /static/images/carousels/Catrina%20fragrance.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:42] "[36mGET /static/images/carousels/Catrin%20fragrance.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:42] "[36mGET /static/images/carousels/Pink%20Death.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:42] "GET /static/images/bf-logo-white.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:47] "GET /admin/products HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:47] "GET /static/css/admin.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:47] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:47] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:47] "[36mGET /_uploads/products/1_2.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:47] "GET /static/images/background-Admin.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:54] "GET /admin/add-product HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:54] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:54] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:54] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:54] "GET /static/images/preview.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:54] "[36mGET /static/images/background-Admin.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:56] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:37:59] "GET /admin/products HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:00] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:00] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:00] "[36mGET /static/images/background-Admin.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:00] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:00] "[36mGET /_uploads/products/1_2.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:05] "GET /products HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:05] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:05] "[36mGET /_uploads/products/1_2.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:11] "GET /admin/products HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:11] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:11] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:11] "[36mGET /_uploads/products/1_2.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:11] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:11] "[36mGET /static/images/background-Admin.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:13] "GET /users HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:13] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:13] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:14] "[36mGET /static/images/background-Admin.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:14] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:15] "GET /admin/products HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:15] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:15] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:15] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:15] "[36mGET /static/images/background-Admin.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:15] "[36mGET /_uploads/products/1_2.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:17] "GET /admin/product-details/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:17] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:17] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:17] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:17] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:17] "GET /_uploads/supplies/1_4.jpg HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:17] "[36mGET /_uploads/products/1_2.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:23] "GET /admin/product-make/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:23] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:23] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:23] "[36mGET /_uploads/products/1_2.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:23] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:38:23] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 879-856-102
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:43:12] "GET /admin/supplies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:43:12] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:43:12] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:43:12] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:43:12] "[36mGET /static/images/background-Admin.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:43:12] "[36mGET /_uploads/supplies/1_4.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:43:17] "GET /admin/supply-details/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:43:17] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:43:17] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:43:17] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:43:17] "[36mGET /_uploads/supplies/1_4.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:43:17] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:43:19] "GET /admin/buy-supply/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:43:19] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:43:19] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:43:19] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:43:19] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+CRITICAL:app:SUPPLY test BOUGHT BY admin@gmail.com
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:45:45] "[32mPOST /admin/buy-supply/1 HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:45:45] "GET /admin/supply-details/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:45:46] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:45:46] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:45:46] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:45:46] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:45:46] "[36mGET /_uploads/supplies/1_4.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:45:54] "GET /admin/supply-inventory/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:45:54] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:45:54] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:45:54] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:45:54] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:45:57] "GET /admin/supplies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:45:57] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:45:57] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:45:57] "[36mGET /static/images/background-Admin.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:45:57] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:45:57] "[36mGET /_uploads/supplies/1_4.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:00] "GET /admin/supply-details/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:00] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:00] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:00] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:00] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:00] "[36mGET /_uploads/supplies/1_4.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:18] "GET /admin/buys/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:18] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:18] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:18] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:18] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:25] "GET /admin/supplies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:25] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:25] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:25] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:25] "[36mGET /_uploads/supplies/1_4.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:25] "[36mGET /static/images/background-Admin.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:28] "GET /admin/supply-details/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:28] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:28] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:28] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:28] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:28] "[36mGET /_uploads/supplies/1_4.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:36] "GET /admin/supply-inventory/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:36] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:36] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:36] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:36] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:42] "GET /admin/supplies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:42] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:42] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:42] "[36mGET /_uploads/supplies/1_4.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:42] "[36mGET /static/images/background-Admin.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:46:42] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:06] "GET /admin/supply-details/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:06] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:06] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:06] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:06] "[36mGET /_uploads/supplies/1_4.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:06] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:08] "GET /admin/buy-supply/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:08] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:08] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:08] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:08] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+CRITICAL:app:SUPPLY test BOUGHT BY admin@gmail.com
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:14] "[32mPOST /admin/buy-supply/1 HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:14] "GET /admin/supply-details/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:14] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:14] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:14] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:14] "[36mGET /_uploads/supplies/1_4.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:14] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:16] "GET /admin/supply-inventory/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:16] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:16] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:16] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:47:16] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:19] "GET /admin/supplies HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:19] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:19] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:19] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:19] "[36mGET /static/images/background-Admin.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:19] "[36mGET /_uploads/supplies/1_4.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:22] "GET /admin/edit-supply/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:22] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:22] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:22] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:22] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:22] "[36mGET /_uploads/supplies/1_4.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:26] "GET /admin/supply-details/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:26] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:26] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:26] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:26] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:26] "[36mGET /_uploads/supplies/1_4.jpg HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:27] "GET /admin/buy-supply/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:27] "[36mGET /static/css/admin.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:27] "[36mGET /static/js/admin.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:27] "[33mGET /admin/static/images/background-Admin.jpg HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Aug/2023 08:49:27] "[36mGET /static/images/bf-logo-nobg.png HTTP/1.1[0m" 304 -
